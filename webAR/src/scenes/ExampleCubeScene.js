@@ -1,4 +1,4 @@
-import {animateCube, createCube} from "../examples/cube";
+import {animateCube, createCube} from "../../public/models/example/cube";
 import * as THREE from 'three';
 
 export function createCubeScene() {
