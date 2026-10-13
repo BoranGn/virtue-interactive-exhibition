@@ -1,6 +1,5 @@
 import {loadModel} from "../loaders/ModelLoader";
 import * as THREE from "three";
-import {time} from "three/tsl";
 
 export async function createDuckScene() {
     const scene = new THREE.Scene();
