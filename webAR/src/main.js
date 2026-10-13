@@ -1,5 +1,4 @@
 import * as THREE from 'three';
-import {createCube} from "./examples/cube";
 import {SceneManager} from "./scenes/SceneManager";
 import {createCubeScene} from "./scenes/ExampleCubeScene";
 const renderer = new THREE.WebGLRenderer();
