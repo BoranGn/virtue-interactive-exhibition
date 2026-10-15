@@ -147,3 +147,22 @@ vite.config.ts.timestamp-*
 
 # Turbo Repo
 .turbo
+
+# macOS
+.DS_Store
+
+# JetBrains IDE
+.idea/
+*.iml
+
+# LaTeX
+*.aux
+*.out
+*.toc
+*.bbl
+*.bcf
+*.blg
+*.run.xml
+*.synctex.gz
+*.fdb_latexmk
+*.fls

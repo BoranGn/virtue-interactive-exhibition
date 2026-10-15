@@ -9,7 +9,7 @@ export async function createDuckScene() {
     scene.add(duck);
 
     function update(time) {
-        duck.rotation.y = time / 2000;
+        duck.rotation.y = time / 20000;
     }
 
     const light = new THREE.HemisphereLight(0xffffff, 0x444444, 3);
