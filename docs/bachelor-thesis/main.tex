@@ -8,6 +8,7 @@
     backend=biber,
     style=ieee
 ]{biblatex}
+\usepackage{tikz}
 
 \addbibresource{references.bib}
 
@@ -163,7 +164,239 @@ the first few seconds decide on whether a user continues or turns to any competi
 - different visitors might need different amount of guidance
 \\
 - The WebAR application could combine free exploration with short educational explanations.
+\newpage
+\subsection{Conceptual Layout of the Physical Waiting Area}
 
+\begin{figure}[htbp]
+    \centering
+
+    \resizebox{\textwidth}{!}{%
+        \begin{tikzpicture}[
+            x=1cm,
+            y=1cm,
+            every node/.style={font=\small},
+            station/.style={
+                draw=black!75,
+                rounded corners=3pt,
+                align=center,
+                text width=3.0cm,
+                minimum height=1.35cm,
+                inner sep=5pt
+            },
+            flowarrow/.style={
+                -{Stealth[length=2.5mm]},
+                thick,
+                dashed,
+                draw=black!60
+            }
+        ]
+
+            % Room boundary
+            \draw[very thick] (0,0) rectangle (13,9);
+
+            % Station 1 - Fasnacht discovery
+            \node[station, fill=blue!12] (fasnacht)
+            at (3.2,7.2) {
+                \textbf{Station 1}\\
+                Fasnacht Discovery\\
+                Cultural Quiz
+            };
+
+            % Station 2 - WebAR
+            \node[station, fill=green!12] (webar)
+            at (9.8,7.2) {
+                \textbf{Station 2}\\
+                WebAR Exploration\\
+                3D Objects
+            };
+
+            % Central waiting area
+            \node[
+                draw=black!60,
+                dashed,
+                rounded corners=3pt,
+                align=center,
+                minimum width=5cm,
+                minimum height=1.2cm,
+                fill=gray!8
+            ] (waiting) at (6.5,4.7) {
+                \textbf{Waiting Area}\\
+                Free Movement
+            };
+
+            % Station 3 - VR onboarding
+            \node[station, fill=orange!15] (onboarding)
+            at (2.5,2.1) {
+                \textbf{Station 3}\\
+                VR Onboarding\\
+                Equipment / Controls
+            };
+
+            % VIRTUE VR experience
+            \node[station, fill=purple!12] (virtue)
+            at (6.5,2.1) {
+                \textbf{VIRTUE}\\
+                VR Experience\\
+                Protected Area
+            };
+
+            % Station 4 - Offboarding
+            \node[station, fill=red!12] (offboarding)
+            at (10.5,2.1) {
+                \textbf{Station 4}\\
+                Offboarding\\
+                Reflection / Discussion
+            };
+
+            % Entrance (left)
+            \draw[white, line width=5pt]
+            (0,4) -- (0,5.2);
+            \draw[flowarrow]
+            (-1,4.6) -- (1.2,4.6);
+            \node[above] at (-0.5,4.6) {Entrance};
+
+            % Exit (right)
+            \draw[white, line width=5pt]
+            (13,4) -- (13,5.2);
+            \draw[flowarrow]
+            (11.8,4.6) -- (14,4.6);
+            \node[above] at (13.5,4.6) {Exit};
+
+            % Optional educational activities
+            \draw[flowarrow]
+            (waiting.north west)
+            to[out=135,in=-90] (fasnacht.south);
+
+            \draw[flowarrow]
+            (waiting.north east)
+            to[out=45,in=-90] (webar.south);
+
+            % Transition to VR onboarding
+            \draw[flowarrow]
+            (waiting.south west)
+            to[out=-130,in=90] (onboarding.north);
+
+            % VR experience flow
+            \draw[flowarrow]
+            (onboarding.east) -- (virtue.west);
+
+            \draw[flowarrow]
+            (virtue.east) -- (offboarding.west);
+
+        \end{tikzpicture}%
+    }
+
+    \caption{
+        Conceptual layout of the physical waiting area,
+        including educational stations, WebAR exploration,
+        VR onboarding, the VIRTUE experience, and
+        offboarding with reflection.
+        Not to scale.
+    }
+
+    \label{fig:waiting-area-layout}
+\end{figure}
+
+\subsubsection{Station 1}
+What:
+- Interactive Quiz about Fasnacht characters and their historical meaning
+\\
+- Where visitors can guess the answers and then learn the solutions later through the WebAR
+\\
+- Visitors should be able to participate alone or discuss the answers in groups
+\\
+Why:
+- We have active participation instead of passive reading (Hornecker & Stifter, 2006)
+\\
+- Low threshold for interaction; short activities but immediate feedback (Hornecker & Stifter, 2006)
+\\
+- We have something for larger groups as most museum visitors come in groups (Hornecker & Stifter, 2006)
+\\
+- Indpendent exploration (Franse et al., 2021)
+\\
+\subsubsection{Station 2: WebAR Exploration}
+
+What:
+- QR code to open the WebAR application
+\\
+- Select different Fasnacht objects
+\\
+- Rotate, zoom and examine 3D models
+\\
+- Here is could also be the Hologram
+\\
+- AR placement through camera
+\\
+- Additional information about cultural and historical meaning
+\\
+Why:
+- Hands-on activities attracted visitor engagement (Hornecker & Stifter, 2006)
+\\
+- Visitors should be able to explore independently (Franse et al., 2021)
+\\
+- Optional guidance could support understanding (Franse et al., 2021)
+\\
+- Different levels of engagement: quick exploration or additional information. (Layering) (Hornecker & Stifter, 2006)
+\\
+\subsubsection{Station 3: VR Onboarding}
+
+What:
+- Short introduction to the VR headset
+\\
+- Explanation of the controller functions needed in VIRTUE (maybe Video)
+\\
+- How to put on and adjust the headset (maybe Video)
+\\
+- How to ask staff for help or stop the experience
+\\
+- Basic safety instructions
+\\
+
+Why:
+- VR onboarding should begin before entering the virtual environment (Whittaker, 2025)
+\\
+- Technical instructions and staff assistance are important parts of onboarding (Whittaker, 2025)
+\\
+- Different visitors have different levels of VR experience (Whittaker, 2025)
+\\
+- Clear instructions and a comfortable environment can help address visitor uncertainty (Whittaker, 2025)
+
+
+\subsubsection{VIRTUE: Protected VR Area}
+
+What:
+- Dedicated area for the VR exhibition
+\\
+- Enough space to not endanger someone
+\\
+- Some visual separation from waiting visitors (important)
+\\
+- Staff supervision and assistance
+\\
+- Possible storage area for personal belongings
+
+Why:
+- Not just te VR experience also physical surroundings influence the VR experience (Whittaker, 2025)
+\\
+- Physical comfort, privacy and staff assistance should be considered (Whittaker, 2025)
+\\
+
+\subsubsection{Station 4: VR Offboarding and Reflection}
+
+What:
+- Good to discuss the VR experience with others
+\\
+- Short reflection questions about what visitors saw or learned
+\\
+- Optional connection to related Fasnacht objects or WebAR content
+\\
+Why:
+- Offboarding is part of the overall VR experience (Whittaker, 2025)
+\\
+- Visitors should have time to readjust to the physical environment (Whittaker, 2025)
+\\
+- Reflection and discussion are proposed educational extensions; Whittaker does not directly test their learning effectiveness
+\\
     \newpage
     \printbibliography
 \end{document}
