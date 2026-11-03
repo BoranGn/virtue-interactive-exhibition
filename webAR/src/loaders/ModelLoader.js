@@ -8,4 +8,3 @@ const loader = new GLTFLoader();
      return gltf.scene;
     }
 
-
