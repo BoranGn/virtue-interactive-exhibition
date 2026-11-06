@@ -1,7 +1,7 @@
 export const objects =[
      {
         id: "duck",
-        model: "models/Duck.glb",
+        path: "../models/Duck.glb",
         translations: {
             en: {
                 name: "Duck",
@@ -33,7 +33,7 @@ export const objects =[
 },
     {
         id: "bear",
-        model: "/models/Bear.glb",
+        path: "../models/zwei_baren.glb",
         translations: {
             en: {
                 name: "Bear",
