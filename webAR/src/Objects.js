@@ -60,5 +60,35 @@ export const objects =[
                 }
             }
         }
+    },
+    {
+        id: "venus",
+        path: "../models/venus.glb",
+        translations: {
+            en: {
+                name: "Venus",
+                description: "Venus is the Roman goddess of love, beauty, and fertility.",
+                quiz: {
+                    question: "What was Venus the goddess of in Roman mythology?",
+                    answer: "Venus was the goddess of love, beauty, and fertility."
+                }
+            },
+            de: {
+                name: "Venus",
+                description: "Venus ist die römische Göttin der Liebe, Schönheit und Fruchtbarkeit.",
+                quiz: {
+                    question: "Wofür war Venus in der römischen Mythologie die Göttin?",
+                    answer: "Venus war die Göttin der Liebe, Schönheit und Fruchtbarkeit."
+                }
+            },
+            fr: {
+                name: "Vénus",
+                description: "Vénus est la déesse romaine de l'amour, de la beauté et de la fertilité.",
+                quiz: {
+                    question: "De quoi Vénus était-elle la déesse dans la mythologie romaine ?",
+                    answer: "Vénus était la déesse de l'amour, de la beauté et de la fertilité."
+                }
+            }
+        }
     }];
 

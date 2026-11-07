@@ -1,24 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
     <title>FasnachtAR</title>
     <style>
-        body { margin: 0; }
+        body {
+            margin: 0;
+        }
+
+        button {
+            min-height: 44px;
+            padding: 12px 20px;
+            font-size: 16px;
+        }
+
+        select {
+            min-height: 44px;
+            font-size: 16px;
+        }
     </style>
 </head>
 <body>
-<h1>VirtuLearn – Discover Basel Fasnacht</h1>
+    <h1>VirtuLearn – Discover Basel Fasnacht</h1>
 
-<select id="language-select">
-    <option value="en">English</option>
-    <option value="de">Deutsch</option>
-    <option value="fr">French</option>
-</select>
+    <select id="language-select">
+        <option value="en">English</option>
+        <option value="de">Deutsch</option>
+        <option value="fr">French</option>
+    </select>
 
-<div id="object-list"></div>
+    <div id="object-list"></div>
 
-<div id="viewer"></div>
+    <div id="viewer"></div>
 
 <script type="module" src="/src/main.js"></script>
 </body>
