@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import {SceneManager} from "./SceneManager";
 import {createObjectScene} from "./scenes/ObjectScene";
+import {createControls} from "./controls/Controls.js";
 import {objects} from "./Objects.js"
 
 //HTML elements
@@ -16,6 +17,8 @@ const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 const sceneManager = new SceneManager(renderer);
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+const controller = createControls(camera,renderer);
 
 
 languageSelect.addEventListener("change", () => {
@@ -46,18 +49,22 @@ function renderObjectList() {
 }
 
 async function selectButton(object) {
-    const objectScene =  await createObjectScene(object, currentLanguage);
+    const objectScene =  await createObjectScene(camera, object, currentLanguage);
     sceneManager.setScene(objectScene.scene, objectScene.camera);
     activeScene = objectScene;
+
+    controller.target.set(0, 0, 0);
+    controller.update();
+    controller.saveState();
 }
 renderObjectList();
 
 console.log(languageSelect.value);
 
-function animate(time) {
+function animate() {
     if (activeScene) {
-        activeScene.update(time);
         sceneManager.renderScene();
+        controller.update();
     }
 }
 renderer.setAnimationLoop(animate);
