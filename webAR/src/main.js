@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import {SceneManager} from "./SceneManager";
-import {createObjectScene} from "./scenes/ObjectScene";
+import {createObjectScene} from "./viewers/ModelViewer";
 import {createControls} from "./controls/Controls.js";
 import {objects} from "./Objects.js"
 
