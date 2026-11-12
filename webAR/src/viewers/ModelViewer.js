@@ -1,9 +1,9 @@
 import {loadModel} from "../loaders/ModelLoader";
 import * as THREE from "three";
 
-export async function createObjectScene(camera,object,currentLanguage) {
+export async function createObjectScene(camera,currentLanguage) {
     const scene = new THREE.Scene();
-    const objectModel = await loadModel(object.path);
+    const objectModel = await loadModel("/media/3d/eisbar.glb");
 
     const box = new THREE.Box3().setFromObject(objectModel);
     const center  = box.getCenter(new THREE.Vector3());

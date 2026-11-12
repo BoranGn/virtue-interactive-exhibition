@@ -1,0 +1,42 @@
+.page-navigation {
+    display: flex;
+    gap: 8px;
+    padding: 15px 20px;
+}
+
+.page-navigation button {
+    flex: 1;
+    background-color: #f3f4f6;
+    color: #374151;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.page-navigation button.active {
+    background-color: #18181b;
+    color: white;
+}
+
+.page-navigation button:hover {
+    background-color: #e5e7eb;
+}
+
+.page-navigation button.active:hover {
+    background-color: #27272a;
+}
+body {
+    margin: 0;
+}
+
+button {
+    min-height: 44px;
+    padding: 12px 20px;
+    font-size: 16px;
+}
+
+select {
+    min-height: 44px;
+    font-size: 16px;
+}
