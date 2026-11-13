@@ -8,7 +8,7 @@ import scene from "three/addons/offscreen/scene";
 //HTML elements
 const list = document.getElementById('object-list');
 const languageSelect = document.getElementById("language-select");
-
+const viewer = document.getElementById("viewer");
 const searchInput = document.getElementById("search-input");
 const searchButton = document.getElementById("search-button");
 
@@ -18,7 +18,8 @@ let activeScene = null;
 
 //THREE.js
 const renderer = new THREE.WebGLRenderer();
-renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setSize(viewer.clientWidth, viewer.clientHeight);
+viewer.appendChild(renderer.domElement);
 document.body.appendChild(renderer.domElement);
 const sceneManager = new SceneManager(renderer);
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);

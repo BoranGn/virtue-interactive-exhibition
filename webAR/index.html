@@ -1,29 +1,113 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
-    <title>FasnachtAR</title>
+    <title>VirtuLearn - Basler Fasnacht</title>
+    <link rel="stylesheet" href="./style.css">
 
 </head>
 <body>
-    <h1>VirtuLearn – Discover Basel Fasnacht</h1>
+<header class="app-header">
+    <div class="branding">
+        <h1>VirtuLearn</h1>
+        <p>Discover Basler Fasnacht</p>
+    </div>
 
-    <select id="language-select">
-        <option value="en">English</option>
+
+    <select id="language-select" aria-label="Sprache">
         <option value="de">Deutsch</option>
-        <option value="fr">French</option>
+        <option value="en">English</option>
+        <option value="fr">Français</option>
     </select>
+</header>
 
-    <nav class="page-navigation">
-        <button id="exhibition-tab" class="active">Ausstellung</button>
-        <button id="explore-tab">Entdecken</button>
-    </nav>
-
-    <div id="object-list"></div>
+<main class="app-content">
+    <section id="exhibition-page">
+        <div class="page-intro">
+            <span class="eyebrow">01 / DIE AUSSTELLUNG</span>
+            <h2>Fasnacht neu entdecken.</h2>
+            <p>
+                Erkunde ausgewählte Objekte der Basler Fasnacht
+                interaktiv in 3D.
+            </p>
+        </div>
+        <article class="exhibit-card">
 
     <div id="viewer"></div>
+            <div class="object-info">
+                <h3 id="object-title">Waggis-Maske</h3>
+                <p id="object-description">
+                    Entdecke die Geschichte und Besonderheiten
+                    der Basler Fasnacht.
+                </p>
+            </div>
 
-<script type="module" src="/src/main.js"></script>
+            <div class="object-navigation">
+                <button id="previous-button" type="button">
+                    ← Zurück
+                </button>
+
+                <span id="object-counter">1 / 3</span>
+
+                <button id="next-button" type="button">
+                    Weiter →
+                </button>
+            </div>
+
+        </article>
+    </section>
+
+
+    <section class="discover-card">
+            <h3>Mehr als nur diese Ausstellung.</h3>
+
+            <p>
+                Du möchtest noch mehr entdecken?
+                Suche in unserer digitalen Sammlung
+                nach weiteren 3D-Objekten.
+            </p>
+            <button id="explore-button" type="button">
+                Weitere Objekte entdecken →
+            </button>
+        </section>
+
+    <section id="explore-page" hidden>
+        <button id="back-to-exhibition" type="button">
+            ← Zur Ausstellung
+        </button>
+
+        <div class="page-intro">
+            <span class="eyebrow">02 / DIGITALE SAMMLUNG</span>
+            <h2>Weitere Objekte entdecken.</h2>
+            <p>
+                Durchsuche zusätzliche Objekte
+                mit der vitrivr-Suchfunktion.
+            </p>
+        </div>
+
+        <div class="search-bar main-search">
+            <input
+                    id="search-input"
+                    type="search"
+                    placeholder="Wonach suchst du?"
+                    aria-label="Suchbegriff"
+            >
+
+            <button id="search-button" type="button">
+                Suchen
+            </button>
+        </div>
+
+        <div id="object-list" class="search-results">
+
+        </div>
+        <div id="search-viewer" class="search-viewer" hidden>
+        </div>
+
+    </section>
+</main>
+
+    <script type="module" src="/src/main.js"></script>
 </body>
 </html>
