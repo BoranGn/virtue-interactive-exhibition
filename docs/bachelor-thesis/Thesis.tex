@@ -1,0 +1,74 @@
+%% ----------------------------------------------------------------
+%% Thesis.tex -- main
+%% ---------------------------------------------------------------- 
+
+\documentclass[a4paper, 10pt, oneside]{memoir}
+%% Use the option citeauthor to be able to use citet. The default cite will still work.
+\usepackage[citeauthor]{basilea}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+
+%% ----------------------------------------------------------------
+
+\title				{VirtuLearn: Designing Interactive and Educational Experiences Across Physical and Virtual Museum Spaces}
+\thesistype			{Thesis Type (e.g., Bachelor/Master thesis/project)}
+
+\department 		    {Department (e.g., Department of Mathematics and Computer Science)}
+\faculty			{Faculty (e.g., Natural Science Faculty of the University of Basel)}
+\research		    {Research Group \\ Webpage}
+
+\examiner    		{Examiner (e.g., Prof. Dr. Alan Turing)}
+\supervisor  		{Supervisor (e.g., Advisor, MSc.)}
+
+\authors     		{Author(s)}
+\email				{E-Mail}
+\immatriculnr		{0000-000-000}
+
+\date				{Hand-In-Date}
+
+% switch here for the german logo to logo-de
+\ulogo				{Template/logo-en} 
+
+
+%% ----------------------------------------------------------------
+\begin{document}
+
+% for english use \selectlanguage{english}, for german use \selectlanguage{ngerman}
+\selectlanguage{english}
+
+\thesisfront
+\maketitle
+\pagestyle{thesis}
+%% ----------------------------------------------------------------
+% \input{./Front/Acknowledgment}
+%% ----------------------------------------------------------------
+\input{./Front/Abstract}
+%% ----------------------------------------------------------------
+\thesistoc
+%% ----------------------------------------------------------------
+%\thesisnomencl
+%% ----------------------------------------------------------------
+\thesismain
+\input{./Chapters/Chapter1Draft}
+\input{./Chapters/Introduction}
+\input{./Chapters/BackgroundAndRelatedWork}
+\input{./Chapters/Methodology}
+\input{./Chapters/Implementation}
+\input{./Chapters/Evaluation}
+\input{./Chapters/Discussion}
+\input{./Chapters/Conclusion}
+%% ----------------------------------------------------------------
+\thesisappendix
+\thesisbib
+\bibliography{thesis}
+\begin{appendices}
+	\input{./Back/AppendixA} 
+\end{appendices}
+%% ----------------------------------------------------------------
+\thesisback
+\iflanguage{english}
+  {\includepdf{./Back/wissensch_Redlichkeit_E_09-2023.pdf}}
+  {\includepdf{./Back/wissensch_Redlichkeit_D_09-2023.pdf}}
+%% ----------------------------------------------------------------
+\end{document}
+%% ----------------------------------------------------------------
