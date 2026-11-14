@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>VirtuLearn - Basler Fasnacht</title>
     <link rel="stylesheet" href="./style.css">
-
 </head>
+
 <body>
+
 <header class="app-header">
     <div class="branding">
         <h1>VirtuLearn</h1>
@@ -22,25 +24,32 @@
     </select>
 </header>
 
+<nav class="page-navigation" aria-label="Seitennavigation">
+    <button
+            id="show-exhibition"
+            class="active"
+            type="button"
+            aria-current="page">
+        Ausstellung
+    </button>
+
+    <button id="show-explore" type="button">
+        Sammlung
+    </button>
+</nav>
+
 <main class="app-content">
+
     <section id="exhibition-page">
-        <div class="page-intro">
-            <span class="eyebrow">01 / DIE AUSSTELLUNG</span>
-            <h2>Fasnacht neu entdecken.</h2>
-            <p>
-                Erkunde ausgewählte Objekte der Basler Fasnacht
-                interaktiv in 3D.
-            </p>
-        </div>
+
         <article class="exhibit-card">
 
-    <div id="viewer"></div>
-            <div class="object-info">
-                <h3 id="object-title">Waggis-Maske</h3>
-                <p id="object-description">
-                    Entdecke die Geschichte und Besonderheiten
-                    der Basler Fasnacht.
-                </p>
+            <div class="viewer-container">
+                <div id="viewer"></div>
+
+                <span id="object-title" class="viewer-title">
+                    Waggis-Maske
+                </span>
             </div>
 
             <div class="object-navigation">
@@ -56,37 +65,22 @@
             </div>
 
         </article>
+
     </section>
-
-
-    <section class="discover-card">
-            <h3>Mehr als nur diese Ausstellung.</h3>
-
-            <p>
-                Du möchtest noch mehr entdecken?
-                Suche in unserer digitalen Sammlung
-                nach weiteren 3D-Objekten.
-            </p>
-            <button id="explore-button" type="button">
-                Weitere Objekte entdecken →
-            </button>
-        </section>
-
     <section id="explore-page" hidden>
-        <button id="back-to-exhibition" type="button">
-            ← Zur Ausstellung
-        </button>
 
         <div class="page-intro">
-            <span class="eyebrow">02 / DIGITALE SAMMLUNG</span>
+            <span class="eyebrow">DIGITALE SAMMLUNG</span>
+
             <h2>Weitere Objekte entdecken.</h2>
+
             <p>
-                Durchsuche zusätzliche Objekte
-                mit der vitrivr-Suchfunktion.
+                Durchsuche unsere digitale Sammlung nach
+                weiteren 3D-Objekten.
             </p>
         </div>
 
-        <div class="search-bar main-search">
+        <div class="search-bar">
             <input
                     id="search-input"
                     type="search"
@@ -98,13 +92,6 @@
                 Suchen
             </button>
         </div>
-
-        <div id="object-list" class="search-results">
-
-        </div>
-        <div id="search-viewer" class="search-viewer" hidden>
-        </div>
-
     </section>
 </main>
 
