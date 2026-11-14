@@ -190,3 +190,53 @@ button {
 [hidden] {
     display: none !important;
 }
+
+@media (min-width: 900px) {
+
+    body {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 32px;
+    }
+
+    .app-header {
+        margin-bottom: 24px;
+    }
+
+    .branding h1 {
+        font-size: 30px;
+    }
+
+    .page-navigation {
+        max-width: 450px;
+        margin: 0 auto 24px;
+    }
+
+    .exhibit-card {
+        padding: 20px;
+    }
+
+    #viewer {
+        height: 65dvh;
+        min-height: 450px;
+        max-height: 700px;
+    }
+
+    .viewer-title {
+        top: 20px;
+        left: 20px;
+        font-size: 16px;
+    }
+
+    .object-navigation {
+        margin-top: 20px;
+    }
+
+    .page-intro h2 {
+        font-size: 32px;
+    }
+
+    .search-bar {
+        max-width: 700px;
+    }
+}
