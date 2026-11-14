@@ -3,6 +3,7 @@ import {SceneManager} from "./SceneManager";
 import {createObjectScene} from "./viewers/ModelViewer";
 import {createControls} from "./controls/Controls.js";
 import {objects} from "./Objects.js"
+import {setUpExhibition} from "./ui/Exhibition";
 import scene from "three/addons/offscreen/scene";
 
 //HTML elements
@@ -17,31 +18,22 @@ const explorePage = document.getElementById("explore-page");
 const exhibitionButton = document.getElementById("show-exhibition");
 const exploreButton = document.getElementById("show-explore");
 
+
 //Scene
 let currentLanguage = "en";
 let activeScene = null;
+let currentObject = objects[0];
 
 //THREE.js
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize(viewer.clientWidth, viewer.clientHeight);
 viewer.appendChild(renderer.domElement);
 const sceneManager = new SceneManager(renderer);
-const camera = new THREE.PerspectiveCamera(75, window.clientWidth / window.clientHeight, 0.1, 1000);
+const camera = new THREE.PerspectiveCamera(75, viewer.clientWidth / viewer.clientHeight, 0.1, 1000);
 const controller = createControls(camera,renderer);
-
-searchButton.addEventListener("click", e => {
-    const input = searchInput.value.trim();
-
-    if (input === "") {
-        alert("Please enter a valid input");
-        return;
-    }
-    createSceneBySearch(searchInput.value)
-})
 
 languageSelect.addEventListener("change", () => {
     currentLanguage = languageSelect.value;
-    renderObjectList();
 });
 
 function showPage(page) {
@@ -68,17 +60,17 @@ function setScene(objectScene) {
 }
 
 
-async function createSceneBySearch(searchInput){
-    const objectScene = await createObjectScene(camera, currentLanguage, searchInput);
-    setScene(objectScene);
+async function createScene(object){
+    try {
+        const objectPath = object.path;
+        const objectScene = await createObjectScene(camera, currentLanguage, objectPath);
+        setScene(objectScene);
+    }
+    catch (error) {
+        console.error("Failed to create scene:", error);}
 }
 
-async function createSceneBySelection() {
-    const objectScene =  await createObjectScene(camera, currentLanguage);
-    setScene(objectScene);
-}
-
-renderObjectList();
+setUpExhibition(createScene, languageSelect);
 
 console.log(languageSelect.value);
 
