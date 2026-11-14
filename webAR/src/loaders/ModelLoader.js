@@ -1,6 +1,6 @@
-import {GLTFLoader} from "three/addons/loaders/GLTFLoader";
+import * as THREE from "three/addons";
 
-const loader = new GLTFLoader();
+const loader = new THREE.GLTFLoader();
 
  export async function loadModel(path){
     const gltf = await loader.loadAsync(path)

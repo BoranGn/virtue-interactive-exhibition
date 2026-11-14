@@ -5,6 +5,7 @@ import {createControls} from "./controls/Controls.js";
 import {objects} from "./Objects.js"
 import {setUpExhibition} from "./ui/Exhibition";
 import scene from "three/addons/offscreen/scene";
+import {displayMedia} from "./viewers/MediaViewer";
 
 //HTML elements
 const languageSelect = document.getElementById("language-select");
@@ -31,6 +32,12 @@ viewer.appendChild(renderer.domElement);
 const sceneManager = new SceneManager(renderer);
 const camera = new THREE.PerspectiveCamera(75, viewer.clientWidth / viewer.clientHeight, 0.1, 1000);
 const controller = createControls(camera,renderer);
+
+const context = {
+    camera: camera,
+    language: languageSelect.value,
+    container: viewer
+};
 
 languageSelect.addEventListener("change", () => {
     currentLanguage = languageSelect.value;
@@ -60,16 +67,25 @@ function setScene(objectScene) {
 }
 
 
-async function createScene(object){
+async function createScene(object) {
     try {
-        const objectPath = object.path;
-        const objectScene = await createObjectScene(camera, currentLanguage, objectPath);
-        setScene(objectScene);
-    }
-    catch (error) {
-        console.error("Failed to create scene:", error);}
-}
+        console.log("Selected object:", object);
 
+        const objectScene = await displayMedia(object, {
+            ...context,
+            language: languageSelect.value
+        });
+
+        console.log("MediaViewer result:", objectScene);
+
+        if (object.type === "SOURCE:MESH") {
+            setScene(objectScene);
+        }
+    } catch (error) {
+        console.error("Failed to display media:", error);
+        throw error;
+    }
+}
 setUpExhibition(createScene, languageSelect);
 
 console.log(languageSelect.value);

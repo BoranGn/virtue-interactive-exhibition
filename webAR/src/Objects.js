@@ -1,6 +1,7 @@
 export const objects =[
      {
         id: "duck",
+         type: "SOURCE:MESH",
         path: "../models/Duck.glb",
         translations: {
             en: {
@@ -33,6 +34,7 @@ export const objects =[
 },
     {
         id: "bear",
+        type: "SOURCE:MESH",
         path: "../models/zwei_baren.glb",
         translations: {
             en: {
@@ -63,6 +65,7 @@ export const objects =[
     },
     {
         id: "venus",
+        type: "SOURCE:MESH",
         path: "../models/venus.glb",
         translations: {
             en: {
