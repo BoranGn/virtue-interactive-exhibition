@@ -1,4 +1,4 @@
-export const objects =[
+export const mediaItems =[
      {
         id: "duck",
          type: "SOURCE:MESH",
@@ -92,6 +92,27 @@ export const objects =[
                     answer: "Vénus était la déesse de l'amour, de la beauté et de la fertilité."
                 }
             }
-        }
+
+    }
+    },
+    {
+        id: "waggis",
+        type: "SOURCE:IMAGE",
+        path: "../images/WaggisBild.jpg",
+        translations: {
+                en: {
+                    name: "Waggis",
+                    description: "The Waggis is a famous figure of Basel's Fasnacht, known for its big nose, colorful costume, and wild hair."
+                },
+                de: {
+                    name: "Waggis",
+                    description: "Der Waggis ist eine bekannte Figur der Basler Fasnacht mit einer grossen Nase, einem bunten Kostüm und wilden Haaren."
+                },
+                fr: {
+                    name: "Waggis",
+                    description: "Le Waggis est une figure connue du Carnaval de Bâle, avec un grand nez, un costume coloré et des cheveux ébouriffés."
+                }
+            }
+
     }];
 

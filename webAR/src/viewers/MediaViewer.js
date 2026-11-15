@@ -1,26 +1,33 @@
-import { createObjectScene } from "./ModelViewer.js";
-//import { showAudio } from "./AudioViewer.js";
+import {ModelViewer} from "./ModelViewer.js";
+import {showImage} from "./ImageViewer";
 
+export class MediaViewer{
+    constructor(viewer){
+        this.viewer = viewer;
+        this.modelViewer = new ModelViewer(this.viewer);
+    }
 
-export async function displayMedia(media, context) {
-    switch (media.type) {
-        case "SOURCE:MESH":
-            return await createObjectScene(
-                context.camera,
-                context.language,
-                media.path
-            );
+    async displayMedia( media, language) {
+        switch (media.type) {
+            case "SOURCE:MESH":
+                this.viewer.replaceChildren(this.modelViewer.renderer.domElement);
+                this.modelViewer.resize();
 
-        case "SOURCE:IMAGE":
-            //return showImage(context.container, media.path);
+                await this.modelViewer.showScene(media.path, language);
+                break;
 
-        case "SOURCE:VIDEO":
-           // return showVideo(context.container, media.path);
+            case "SOURCE:IMAGE":
+            await showImage(this.viewer, media.path);
+            break;
 
-        case "SOURCE:AUDIO":
-           // return showAudio(context.container, media.path);
+            case "SOURCE:VIDEO":
+            // return showVideo(context.container, media.path);
 
-        default:
-           // throw new Error(`Unsupported media type: ${media.type}`);
+            case "SOURCE:AUDIO":
+            // return showAudio(context.container, media.path);
+
+            default:
+            // throw new Error(`Unsupported media type: ${media.type}`);
+        }
     }
 }
