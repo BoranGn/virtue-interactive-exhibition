@@ -114,5 +114,44 @@ export const mediaItems =[
                 }
             }
 
-    }];
+    },
+    {
+        id: "gluggsi",
+        type: "SOURCE:AUDIO",
+        path: "../audios/gluggsi.mp3",
+        translations: {
+            en: {
+                name: "ARI Gluggsi",
+                description: "An audio recording from Basel's Fasnacht."
+            },
+            de: {
+                name: "ARI Gluggsi",
+                description: "Eine Tonaufnahme von der Basler Fasnacht."
+            },
+            fr: {
+                name: "ARI Gluggsi",
+                description: "Un enregistrement sonore du Carnaval de Bâle."
+            }
+        }
+    },
+    {
+        id: "tambouren",
+        type: "SOURCE:VIDEO",
+        path: "../videos/tambouren.webm",
+        translations: {
+            en: {
+                name: "Drummers at Basel Fasnacht",
+                description: "A video showing drummers performing during the Basel Fasnacht parade."
+            },
+            de: {
+                name: "Tambouren an der Basler Fasnacht",
+                description: "Ein Video von Tambouren, die während des Cortège an der Basler Fasnacht trommeln."
+            },
+            fr: {
+                name: "Tambours du Carnaval de Bâle",
+                description: "Une vidéo montrant des tambours lors du cortège du Carnaval de Bâle."
+            }
+        }
+    }
+];
 

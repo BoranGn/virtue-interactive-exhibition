@@ -191,6 +191,17 @@ button {
     display: none !important;
 }
 
+#viewer:has(audio) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#viewer audio {
+    width: min(90%, 500px);
+    height: min(90%, 200px);
+}
+
 @media (min-width: 900px) {
 
     body {

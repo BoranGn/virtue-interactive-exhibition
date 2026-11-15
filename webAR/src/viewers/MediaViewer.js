@@ -1,5 +1,7 @@
 import {ModelViewer} from "./ModelViewer.js";
 import {showImage} from "./ImageViewer";
+import {showVideo} from "./VideoViewer";
+import {showAudio} from "./AudioViewer";
 
 export class MediaViewer{
     constructor(viewer){
@@ -17,17 +19,17 @@ export class MediaViewer{
                 break;
 
             case "SOURCE:IMAGE":
-            await showImage(this.viewer, media.path);
+            showImage(this.viewer, media.path);
             break;
 
             case "SOURCE:VIDEO":
-            // return showVideo(context.container, media.path);
-
+                showVideo(this.viewer, media.path);
+                break;
             case "SOURCE:AUDIO":
-            // return showAudio(context.container, media.path);
-
+                showAudio(this.viewer, media.path);
+                break;
             default:
-            // throw new Error(`Unsupported media type: ${media.type}`);
+                throw new Error(`Unsupported media type: ${media.type}`);
         }
     }
 }

@@ -1,4 +1,4 @@
-export async function showImage(viewer, path) {
+export function showImage(viewer, path) {
     const image = document.createElement("img");
 
     image.src = path;
