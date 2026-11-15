@@ -1,11 +1,12 @@
-import {loadImage} from "../loaders/ImageLoader";
-import * as THREE from "three";
+export async function showImage(viewer, path) {
+    const image = document.createElement("img");
 
-export async function createImageScene(camera,currentLanguage, path) {
-    const scene = new THREE.Scene();
-    const image = await loadImage(path);
+    image.src = path;
+    image.alt = "Exhibition image";
 
-    scene.add(image);
+    image.style.width = "100%";
+    image.style.height = "100%";
+    image.style.objectFit = "contain";
 
-    return { scene, camera };
+    viewer.replaceChildren(image);
 }

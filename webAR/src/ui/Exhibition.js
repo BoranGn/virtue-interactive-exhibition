@@ -1,23 +1,24 @@
-import {objects} from "../Objects";
+import {mediaItems} from "../MediaItems";
 
 export function setUpExhibition(createScene, languageSelect) {
     const nextButton = document.getElementById("next-button");
     const previousButton = document.getElementById("previous-button");
     const objectTitle = document.getElementById("object-title");
     const objectCounter = document.getElementById("object-counter");
+
     let currentIndex = 0;
 
     function updateInfo() {
-        const object = objects[currentIndex];
+        const object = mediaItems[currentIndex];
         objectTitle.textContent = object.translations[languageSelect.value].name;
-        objectCounter.textContent = (currentIndex + 1) + " / " + objects.length;
+        objectCounter.textContent = (currentIndex + 1) + " / " + mediaItems.length;
     }
 
     async function changeObject(direction) {
         const nextIndex =
-            (currentIndex + direction + objects.length) % objects.length;
+            (currentIndex + direction + mediaItems.length) % mediaItems.length;
 
-        await createScene(objects[nextIndex]);
+        await createScene(mediaItems[nextIndex]);
 
         currentIndex = nextIndex;
         updateInfo();
@@ -33,6 +34,6 @@ export function setUpExhibition(createScene, languageSelect) {
 
     languageSelect.addEventListener("change", updateInfo);
 
-    createScene(objects[currentIndex]).catch(console.error);
+    createScene(mediaItems[currentIndex]).catch(console.error);
     updateInfo();
 }
