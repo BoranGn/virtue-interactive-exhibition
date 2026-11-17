@@ -82,16 +82,26 @@ button {
     position: relative;
 }
 
-#viewer {
+#viewer{
     width: 100%;
-    height: 55dvh;
+    height: 80dvh;
+    min-height: 280px;
+    max-height: 700px;
+    overflow: hidden;
+    touch-action: none;
+}
+
+#explore-viewer{
+    width: 100%;
+    height: 80dvh;
     min-height: 280px;
     max-height: 550px;
     overflow: hidden;
     touch-action: none;
 }
 
-#viewer canvas {
+#viewer canvas,
+#explore-viewer canvas {
     display: block;
 }
 
@@ -127,6 +137,21 @@ button {
 }
 
 #object-counter {
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+#previous-button-explore {
+    background: #f3f4f6;
+    color: #18181b;
+}
+
+#next-button-explore {
+    background: #18181b;
+    color: white;
+}
+
+#explore-object-counter {
     font-size: 14px;
     white-space: nowrap;
 }
@@ -191,13 +216,15 @@ button {
     display: none !important;
 }
 
-#viewer:has(audio) {
+#viewer:has(audio),
+#explore-viewer:has(video) {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-#viewer audio {
+#viewer audio,
+#explore-viewer audio {
     width: min(90%, 500px);
     height: min(90%, 200px);
 }
@@ -227,7 +254,7 @@ button {
         padding: 20px;
     }
 
-    #viewer {
+    #viewer{
         height: 65dvh;
         min-height: 450px;
         max-height: 700px;

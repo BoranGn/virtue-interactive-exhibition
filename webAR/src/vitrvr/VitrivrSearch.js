@@ -1,7 +1,7 @@
 import {executeQuery} from "./VitrivrService";
 import {setUpExplore} from "../ui/Explore";
 
-export function setUpSearch(mediaViewer, languageSelect) {
+export function setUpSearch(exploreViewer,languageSelect) {
     const searchButton = document.getElementById('search-button');
     const searchInput = document.getElementById('search-input');
 
@@ -15,7 +15,7 @@ export function setUpSearch(mediaViewer, languageSelect) {
             const query = createQuery(searchText);
             const response = await executeQuery(query);
 
-            const mediaItems = [];
+            const media = [];
             const seenUrls = new Set();
 
             for (const result of response.retrievables) {
@@ -38,27 +38,27 @@ export function setUpSearch(mediaViewer, languageSelect) {
                 if (!relativePath) {
                     continue;
                 }
-                const url = "http://10.34.64.208:9090/" + relativePath;
+                const url = "/media/" + relativePath;
                 if (seenUrls.has(url)) {
                     continue;
                 }
                 seenUrls.add(url);
 
-                mediaItems.push({
+                media.push({
                     type: type,
                     path: url
                 });
-                if (mediaItems.length >= 20) {
+                if (media.length >= 20) {
                     break;
                 }
             }
-            console.log("Search results:", mediaItems);
+            console.log("Search results:", media);
+            setUpExplore(exploreViewer,languageSelect, media);
+
 
         } catch (error) {
             console.error("Search failed:", error);
         }
-        setUpExplore(mediaViewer, languageSelect);
-
 
     });
 }

@@ -1,10 +1,10 @@
 import {mediaItems} from "../MediaItems";
-
-export function setUpExhibition(createScene, languageSelect) {
+export function setUpExhibition(exhibitionMediaViewer, languageSelect) {
     const nextButton = document.getElementById("next-button");
     const previousButton = document.getElementById("previous-button");
     const objectTitle = document.getElementById("object-title");
     const objectCounter = document.getElementById("object-counter");
+
 
     let currentIndex = 0;
 
@@ -18,7 +18,7 @@ export function setUpExhibition(createScene, languageSelect) {
         const nextIndex =
             (currentIndex + direction + mediaItems.length) % mediaItems.length;
 
-        await createScene(mediaItems[nextIndex]);
+        await exhibitionMediaViewer.displayMedia(mediaItems[nextIndex]);
 
         currentIndex = nextIndex;
         updateInfo();
@@ -34,6 +34,6 @@ export function setUpExhibition(createScene, languageSelect) {
 
     languageSelect.addEventListener("change", updateInfo);
 
-    createScene(mediaItems[currentIndex]).catch(console.error);
+    exhibitionMediaViewer.displayMedia(mediaItems[currentIndex]).catch(console.error);
     updateInfo();
 }

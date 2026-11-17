@@ -1,10 +1,9 @@
 import {setUpExhibition} from "./ui/Exhibition";
 import {MediaViewer} from "./viewers/MediaViewer";
+import {setUpSearch} from "./vitrvr/VitrivrSearch";
+import * as THREE from "three";
 
-//HTML elements
 const languageSelect = document.getElementById("language-select");
-const viewer = document.getElementById("viewer");
-const mediaViewer = new MediaViewer(viewer);
 
 const exhibitionPage = document.getElementById("exhibition-page");
 const explorePage = document.getElementById("explore-page");
@@ -12,6 +11,15 @@ const explorePage = document.getElementById("explore-page");
 const exhibitionButton = document.getElementById("show-exhibition");
 const exploreButton = document.getElementById("show-explore");
 
+const exhibitionViewer = new MediaViewer(
+    document.getElementById("viewer")
+);
+
+const exploreViewer = new MediaViewer(
+    document.getElementById("explore-viewer")
+);
+
+THREE.Cache.enabled = true;
 
 //Scene
 let currentLanguage = "en";
@@ -34,16 +42,7 @@ exhibitionButton.addEventListener("click", () => showPage("exhibition"));
 exploreButton.addEventListener("click", () => showPage("explore"));
 
 
-async function displayMedia(media) {
-    try {
-        console.log("Selected object:", media);
-
-        await mediaViewer.displayMedia(media);
-    } catch (error) {
-        console.error("Failed to display media:", error);
-        throw error;
-    }
-}
-setUpExhibition(displayMedia, languageSelect);
+setUpExhibition(exhibitionViewer,languageSelect);
+setUpSearch(exploreViewer,languageSelect);
 
 console.log(languageSelect.value);

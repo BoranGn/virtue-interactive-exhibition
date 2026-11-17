@@ -1,7 +1,5 @@
-const search_base_url = "http://10.34.64.208:7070/api/sandbox"
-
 export async function executeQuery(query) {
-    const response = await fetch(search_base_url + "/query", {
+    const response = await fetch("/api/sandbox/query", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
