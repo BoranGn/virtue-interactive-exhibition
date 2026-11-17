@@ -136,6 +136,12 @@ button {
     color: white;
 }
 
+.object-navigation button:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+    filter: grayscale(100%);
+}
+
 #object-counter {
     font-size: 14px;
     white-space: nowrap;

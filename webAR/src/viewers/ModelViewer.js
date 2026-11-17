@@ -27,6 +27,9 @@ export class ModelViewer{
     async showScene(path) {
         const scene = new THREE.Scene();
 
+        this.activeScene = scene;
+        this.sceneManager.setScene(scene, this.camera);
+
         console.log("Model path:", path);
         console.log("Path type:", typeof path);
 
@@ -45,9 +48,6 @@ export class ModelViewer{
 
         const light = new THREE.HemisphereLight(0xffffff, 0x444444, 3);
         scene.add(light);
-
-        this.sceneManager.setScene(scene, this.camera);
-        this.activeScene = scene;
 
         this.controls.target.set(0, 0, 0);
         this.controls.update();

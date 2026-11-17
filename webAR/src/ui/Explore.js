@@ -17,8 +17,21 @@ export function setUpExplore(exploreMediaViewer,languageSelect,mediaItems) {
     async function changeObject(direction) {
         currentIndex = (currentIndex + direction + mediaItems.length) % mediaItems.length;
         updateInfo();
-        await exploreMediaViewer.displayMedia(mediaItems[currentIndex]);
+        nextButton.disabled = true;
+        previousButton.disabled = true;
+        nextButton.textContent = "Loading...";
 
+        try {
+            await exploreMediaViewer.displayMedia(mediaItems[currentIndex]);
+        }catch(error) {
+            console.error("Failed to load media:", error);
+        }finally {
+
+            nextButton.disabled = false;
+            previousButton.disabled = false;
+            nextButton.textContent = "Weiter";
+
+        }
     }
 
     nextButton.addEventListener("click", () => {
