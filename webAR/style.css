@@ -235,6 +235,26 @@ button {
     height: min(90%, 200px);
 }
 
+#open-ar-button,
+#open-ar-button-explore {
+    background: #18181b;
+    color: white;
+    margin-top: 12px;
+}
+
+#open-ar-button:disabled,
+#open-ar-button-explore:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+
+.ar-model {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    left: -9999px;
+}
+
 @media (min-width: 900px) {
 
     body {

@@ -44,6 +44,10 @@
 
         <article class="exhibit-card">
 
+            <button id="open-ar-button" type="button">
+                In AR ansehen
+            </button>
+
             <div class="viewer-container">
                 <div id="viewer"></div>
 
@@ -92,6 +96,9 @@
             </button>
         </div>
         <article id="explore-results" class="exhibit-card search-results" hidden>
+            <button id="open-ar-button-explore" type="button">
+                In AR ansehen
+            </button>
 
             <div class="viewer-container">
                 <div id="explore-viewer"></div>
@@ -113,7 +120,22 @@
 
     </section>
 </main>
+<model-viewer
+        id="ar-model"
+        class="ar-model"
+        ar
+        ar-modes="webxr scene-viewer quick-look"
+        alt="3D-Modell in Augmented Reality">
+</model-viewer>
 
-    <script type="module" src="/src/main.js"></script>
+<model-viewer
+        id="ar-model-explore"
+        class="ar-model"
+        ar
+        ar-modes="webxr scene-viewer quick-look"
+        alt="3D-Modell aus der Sammlung in Augmented Reality">
+</model-viewer>
+
+    <script type="module" src="./src/main.js"></script>
 </body>
 </html>

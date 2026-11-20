@@ -1,6 +1,6 @@
 import {MediaViewer} from "../viewers/MediaViewer";
 
-export function setUpExplore(exploreMediaViewer,languageSelect,mediaItems) {
+export function setUpExplore(exploreMediaViewer,languageSelect, mediaItems) {
     const nextButton = document.getElementById("next-button-explore");
     const previousButton = document.getElementById("previous-button-explore");
     const objectCounter = document.getElementById("explore-object-counter");
@@ -22,7 +22,7 @@ export function setUpExplore(exploreMediaViewer,languageSelect,mediaItems) {
         nextButton.textContent = "Loading...";
 
         try {
-            await exploreMediaViewer.displayMedia(mediaItems[currentIndex]);
+            await exploreMediaViewer.displayMedia(mediaItems[currentIndex], languageSelect.value);
         }catch(error) {
             console.error("Failed to load media:", error);
         }finally {
@@ -42,9 +42,8 @@ export function setUpExplore(exploreMediaViewer,languageSelect,mediaItems) {
         changeObject(-1).catch(console.error);
     });
 
-    languageSelect.addEventListener("change", updateInfo);
-
     exploreMediaViewer.displayMedia(mediaItems[currentIndex]).catch(console.error);
+
     updateInfo();
 }
 

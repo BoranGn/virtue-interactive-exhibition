@@ -152,6 +152,25 @@ export const mediaItems =[
                 description: "Une vidéo montrant des tambours lors du cortège du Carnaval de Bâle."
             }
         }
+    },
+    {
+        id: "basler-trommel",
+        type: "SOURCE:MESH",
+        path: "../models/Basler_Trommel_Holzstöcke.glb",
+        translations: {
+            de: {
+                title: "Basler Trommel",
+                description: "Die Basler Trommel ist ein traditionelles Schlaginstrument der Basler Fasnacht."
+            },
+            en: {
+                title: "Basel Drum",
+                description: "The Basel drum is a traditional percussion instrument played during Basel Carnival."
+            },
+            fr: {
+                title: "Tambour bâlois",
+                description: "Le tambour bâlois est un instrument de percussion traditionnel du Carnaval de Bâle."
+            }
+        }
     }
 ];
 

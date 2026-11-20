@@ -18,7 +18,7 @@ export function setUpExhibition(exhibitionMediaViewer, languageSelect) {
         const nextIndex =
             (currentIndex + direction + mediaItems.length) % mediaItems.length;
 
-        await exhibitionMediaViewer.displayMedia(mediaItems[nextIndex]);
+        await exhibitionMediaViewer.displayMedia(mediaItems[nextIndex], languageSelect.value);
 
         currentIndex = nextIndex;
         updateInfo();
