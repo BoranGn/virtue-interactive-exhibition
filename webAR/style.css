@@ -10,7 +10,15 @@ body {
     margin: 0;
     padding: 12px;
     font-family: Arial, sans-serif;
-    background: white;
+    background:
+            linear-gradient(
+                    rgba(255, 255, 255, 0.65),
+                    rgba(255, 255, 255, 0.65)
+            ),
+            url("/assets/confetti_background.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
     color: #18181b;
     overflow-x: hidden;
 }
@@ -36,10 +44,38 @@ button {
     gap: 12px;
     margin-bottom: 12px;
 }
+.header-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+}
+
+.branding-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+}
+
+.unibas-logo {
+    width: 90px;
+    height: 65px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.header-waggis {
+    width: 55px;
+    height: 55px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
 
 .branding h1 {
     margin: 0;
     font-size: 24px;
+    color: #c83737;
 }
 
 .branding p {
@@ -50,33 +86,15 @@ button {
 
 #language-select {
     max-width: 140px;
+    margin-left: auto;
 }
 
-.page-navigation {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 12px;
-    padding: 4px;
-    border-radius: 10px;
-    background: #f3f4f6;
-}
-.page-navigation button {
-    flex: 1;
-    min-width: 0;
-    background: transparent;
-    color: #71717a;
-}
-
-.page-navigation button.active {
-    background: white;
-    color: #18181b;
-    font-weight: 600;
-}
 
 .exhibit-card {
     border: 1px solid #e4e4e7;
     border-radius: 12px;
     padding: 8px;
+    background: rgba(255, 255, 255, 0.95);
 }
 .viewer-container {
     position: relative;
@@ -111,7 +129,7 @@ button {
     left: 8px;
     padding: 8px 12px;
     border-radius: 8px;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 214, 90, 0.95);
     font-size: 14px;
     font-weight: 600;
     pointer-events: none;
@@ -126,16 +144,6 @@ button {
 }
 
 
-#previous-button {
-    background: #f3f4f6;
-    color: #18181b;
-}
-
-#next-button {
-    background: #18181b;
-    color: white;
-}
-
 .object-navigation button:disabled {
     opacity: 0.35;
     cursor: not-allowed;
@@ -145,16 +153,6 @@ button {
 #object-counter {
     font-size: 14px;
     white-space: nowrap;
-}
-
-#previous-button-explore {
-    background: #f3f4f6;
-    color: #18181b;
-}
-
-#next-button-explore {
-    background: #18181b;
-    color: white;
 }
 
 #explore-object-counter {
@@ -168,7 +166,7 @@ button {
 }
 
 .eyebrow {
-    color: #71717a;
+    color: #c83737;
     font-size: 12px;
     font-weight: 600;
     letter-spacing: 1px;
@@ -199,10 +197,6 @@ button {
     border-radius: 8px;
 }
 
-.search-bar button {
-    background: #18181b;
-    color: white;
-}
 
 .search-results {
     margin-top: 16px;
@@ -235,12 +229,21 @@ button {
     height: min(90%, 200px);
 }
 
+#next-button,
+#next-button-explore,
+#open-ar-button,
+#open-ar-button-explore,
+.search-bar button {
+    background: #3158a5;
+    color: white;
+}
+
 #open-ar-button,
 #open-ar-button-explore {
-    background: #18181b;
-    color: white;
     margin-top: 12px;
 }
+
+
 
 #open-ar-button:disabled,
 #open-ar-button-explore:disabled {
@@ -257,6 +260,16 @@ button {
 
 @media (min-width: 900px) {
 
+    .unibas-logo {
+        width: 180px;
+        height: 110px;
+    }
+
+    .header-waggis {
+        width: 75px;
+        height: 75px;
+    }
+
     body {
         max-width: 1100px;
         margin: 0 auto;
@@ -269,11 +282,6 @@ button {
 
     .branding h1 {
         font-size: 30px;
-    }
-
-    .page-navigation {
-        max-width: 450px;
-        margin: 0 auto 24px;
     }
 
     .exhibit-card {
