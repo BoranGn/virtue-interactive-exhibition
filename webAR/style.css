@@ -96,6 +96,30 @@ button {
     padding: 8px;
     background: rgba(255, 255, 255, 0.95);
 }
+
+.quiz-verse {
+    white-space: pre-line;
+    line-height: 1.7;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+}
+
+.quiz-answers {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.quiz-feedback.correct {
+    color: green;
+}
+
+.quiz-feedback.incorrect {
+    color: #c83737;
+}
+
 .viewer-container {
     position: relative;
 }
