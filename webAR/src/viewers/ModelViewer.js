@@ -7,12 +7,47 @@ export class ModelViewer{
     constructor(viewer){
         this.viewer = viewer;
         this.renderer = new THREE.WebGLRenderer({antialias: true});
-        this.renderer.setSize(viewer.clientWidth, viewer.clientHeight);
+        this.renderer.setSize(viewer.clientWidth || 1 , viewer.clientHeight || 1);
         this.viewer.appendChild(this.renderer.domElement);
+
         this.activeScene = null;
-        this.camera = new THREE.PerspectiveCamera(75, viewer.clientWidth / viewer.clientHeight, 0.1, 1000);
+        this.modelGroup = null;
+
+        this.camera = new THREE.PerspectiveCamera(75, viewer.clientWidth || 1 / viewer.clientHeight || 1, 0.1, 1000);
         this.controls= createControls(this.camera,this.renderer);
         this.sceneManager = new SceneManager(this.renderer);
+
+        this.raycaster = new THREE.Raycaster();
+        this.pointer = new THREE.Vector2();
+
+        let pointerStart = null;
+
+        this.renderer.domElement.addEventListener("pointerdown", (event) => {
+            pointerStart = {
+                x: event.clientX,
+                y: event.clientY
+            };
+        });
+
+        this.renderer.domElement.addEventListener("pointerup", (event) => {
+            if (!pointerStart) return;
+
+            const distance = Math.hypot(
+                event.clientX - pointerStart.x,
+                event.clientY - pointerStart.y
+            );
+
+            pointerStart = null;
+
+            // Ignore dragging or rotating the model
+            if (distance > 5) return;
+
+            this.checkModelClick(event);
+        });
+
+        this.renderer.domElement.addEventListener("pointercancel", () => {
+            pointerStart = null;
+        });
 
         this.renderer.setAnimationLoop(() => {
             if (this.activeScene && this.renderer.domElement.isConnected) {
@@ -27,11 +62,9 @@ export class ModelViewer{
     async showScene(path) {
         const scene = new THREE.Scene();
 
+        this.modelGroup = null;
         this.activeScene = scene;
         this.sceneManager.setScene(scene, this.camera);
-
-        console.log("Model path:", path);
-        console.log("Path type:", typeof path);
 
         const objectModel = await loadModel(path);
 
@@ -41,6 +74,8 @@ export class ModelViewer{
         const modelGroup = new THREE.Group();
         objectModel.position.sub(center);
         modelGroup.add(objectModel);
+
+        this.modelGroup = modelGroup;
 
         this.fitCamera(box);
 
@@ -80,6 +115,28 @@ export class ModelViewer{
         this.camera.updateProjectionMatrix();
 
         this.renderer.setSize(width, height);
+    }
+    checkModelClick(event) {
+        if (!this.modelGroup) return;
+
+        const rect = this.renderer.domElement.getBoundingClientRect();
+
+        this.pointer.x =
+            ((event.clientX - rect.left) / rect.width) * 2 - 1;
+
+        this.pointer.y =
+            -((event.clientY - rect.top) / rect.height) * 2 + 1;
+
+        this.raycaster.setFromCamera(this.pointer, this.camera);
+
+        const intersects = this.raycaster.intersectObjects(
+            this.modelGroup.children,
+            true
+        );
+
+        if (intersects.length > 0) {
+            this.viewer.dispatchEvent(new CustomEvent("model-tap"));
+        }
     }
 
 }

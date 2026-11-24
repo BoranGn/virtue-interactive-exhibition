@@ -34,7 +34,6 @@
         <select id="language-select" aria-label="Sprache">
         <option value="de">Deutsch</option>
         <option value="en">English</option>
-        <option value="fr">Français</option>
     </select>
 
             <img
@@ -44,25 +43,69 @@
             >
 </header>
 
-<nav class="page-navigation" aria-label="Seitennavigation">
-    <button
-            id="show-exhibition"
-            class="active"
-            type="button"
-            aria-current="page">
-        Ausstellung
-    </button>
-
-    <button id="show-explore" type="button">
-        Sammlung
-    </button>
-</nav>
-
 <main class="app-content">
 
-    <section id="exhibition-page">
+    <section id="welcome-page">
 
-        <article class="exhibit-card">
+        <h2>Willkommen bei VirtuLearn!</h2>
+
+        <p>
+            Entdecke die Basler Fasnacht auf interaktive Weise.
+            Wähle eine Station aus.
+        </p>
+
+        <div class="station-navigation">
+            <a href="?station=larven">
+                Vieli Larve, vieli Gschichte
+            </a>
+
+            <a href="?station=musik">
+                D'Kläng vo de Fasnacht
+            </a>
+
+            <a href="?station=archiv">
+                Drey scheenste Dääg
+            </a>
+        </div>
+
+    </section>
+
+    <section id="exhibition-page" hidden>
+
+        <article id="larven-quiz" class ="exhibit-card">
+
+            <h2 id="quiz-title">Vieli Larve, vieli Gschichte</h2>
+
+            <p id="quiz-instructions">
+                Lies den Vers und finde heraus,
+                welche Fasnachtsfigur beschrieben wird.
+            </p>
+
+            <p id="quiz-verse" class="quiz-verse"></p>
+
+            <div id="quiz-answers" class="quiz-answers">
+            </div>
+
+            <p
+                    id="quiz-feedback"
+                    class="quiz-feedback"
+                    aria-live="polite">
+            </p>
+            <div class="object-navigation">
+                <button id="quiz-previous-button"
+                        type="button"
+                        disabled>
+                    ← Zurück
+                </button>
+
+                <span id="quiz-counter"></span>
+            </div>
+
+        </article>
+        <article id="exhibition-viewer"
+                 class="exhibit-card"
+                 hidden>
+
 
             <button id="open-ar-button" type="button">
                 In AR ansehen
@@ -71,17 +114,17 @@
             <div class="viewer-container">
                 <div id="viewer"></div>
 
-                <span id="object-title" class="viewer-title">
-                    Waggis-Maske
-                </span>
+                <span id="object-title" class="viewer-title"> </span>
             </div>
+                <p id="mask-description" class="mask-info" hidden> </p>
+
 
             <div class="object-navigation">
                 <button id="previous-button" type="button">
                     ← Zurück
                 </button>
 
-                <span id="object-counter">1 / 3</span>
+                <span id="object-counter"> </span>
 
                 <button id="next-button" type="button">
                     Weiter →
@@ -129,7 +172,7 @@
                     ← Zurück
                 </button>
 
-                <span id="explore-object-counter">1 / 1</span>
+                <span id="explore-object-counter"> </span>
 
                 <button id="next-button-explore" type="button">
                     Weiter →

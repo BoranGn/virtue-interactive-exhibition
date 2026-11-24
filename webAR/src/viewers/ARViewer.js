@@ -16,11 +16,11 @@ export class ARViewer {
         });
     }
     setModel(path) {
-        this.openArButton.disabled= false;
+        this.openArButton.hidden = false;
         this.arModel.src = path;
     }
     disable(){
-        this.openArButton.disabled = true;
+        this.openArButton.hidden = true;
         this.arModel.removeAttribute("src");
     }
 }

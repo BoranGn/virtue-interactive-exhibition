@@ -1,18 +1,21 @@
-import {setUpExhibition} from "./ui/Exhibition";
+import {LarvenQuiz} from "./ui/LarvenQuiz.js";
 import {MediaViewer} from "./viewers/MediaViewer";
 import {setUpSearch} from "./vitrvr/VitrivrSearch";
+import {ARViewer} from "./viewers/ARViewer";
+
 
 import "@google/model-viewer";
 import * as THREE from "three";
-import {ARViewer} from "./viewers/ARViewer";
+
+THREE.Cache.enabled = true;
 
 const languageSelect = document.getElementById("language-select");
 
 const exhibitionPage = document.getElementById("exhibition-page");
 const explorePage = document.getElementById("explore-page");
 
-const exhibitionButton = document.getElementById("show-exhibition");
-const exploreButton = document.getElementById("show-explore");
+const params = new URLSearchParams(window.location.search);
+const station = params.get("station") ?? "larven";
 
 const exhibitionARViewer = new ARViewer(
     "ar-model",

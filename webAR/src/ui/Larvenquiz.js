@@ -8,3 +8,283 @@
  * - Display the corresponding Fasnacht mask in the 3D/AR viewer.
  * - Allow users to restart the quiz.
  */
+
+
+import { larven } from "../MediaItems.js";
+
+const quizTexts = {
+    de: {
+        title: "Vieli Larve, vieli Gschichte",
+        instructions: "Lies den Vers und wähle die passende Fasnachtsfigur.",
+        previous: "← Zurück",
+        next: "Weiter →",
+        viewAR: "In AR ansehen",
+        viewMask: "Larve ansehen",
+        correct: "Richtig! Du hast die Fasnachtsfigur erkannt.",
+        incorrect: "Leider falsch. Versuche es nochmals!",
+        completed: "Quiz abgeschlossen!",
+        restart: "Quiz wiederholen"
+    },
+    en: {
+        title: "Many Masks, Many Stories",
+        instructions: "Read the verse and find out which Fasnacht character is being described.",
+        previous: "← Back",
+        next: "Next →",
+        viewAR: "View in AR",
+        viewMask: "View mask",
+        correct: "Correct! You recognised the Fasnacht character.",
+        incorrect: "Not quite. Try again!",
+        completed: "Quiz completed!",
+        restart: "Restart quiz"
+    }
+};
+
+export class LarvenQuiz {
+    constructor(mediaViewer) {
+        this.mediaViewer = mediaViewer;
+        this.languageSelect = document.getElementById("language-select");
+
+        this.quizContainer = document.getElementById("larven-quiz");
+        this.quizTitle = document.getElementById("quiz-title");
+        this.quizInstructions = document.getElementById("quiz-instructions");
+        this.quizVerse = document.getElementById("quiz-verse");
+        this.quizAnswers = document.getElementById("quiz-answers");
+        this.quizFeedback = document.getElementById("quiz-feedback");
+        this.quizCounter = document.getElementById("quiz-counter");
+        this.quizPreviousButton = document.getElementById("quiz-previous-button");
+
+        this.viewerSection = document.getElementById("exhibition-viewer");
+        this.viewerContainer = document.getElementById("viewer");
+        this.objectTitle = document.getElementById("object-title");
+        this.objectCounter = document.getElementById("object-counter");
+        this.maskDescription = document.getElementById("mask-description");
+
+        this.previousButton = document.getElementById("previous-button");
+        this.nextButton = document.getElementById("next-button");
+        this.arButton = document.getElementById("open-ar-button");
+
+        this.currentIndex = 0;
+        this.currentView = "quiz";
+        this.solvedQuestions = new Set();
+
+        this.answerOptions = [...larven].sort(() => Math.random() - 0.5);
+
+        this.languageSelect.addEventListener("change", () => {
+            this.updateLanguage();
+        });
+
+        this.quizPreviousButton.addEventListener("click", () => {
+            this.previousQuestion();
+        });
+
+        this.previousButton.addEventListener("click", () => {
+            this.renderQuestion();
+        });
+
+        this.nextButton.addEventListener("click", () => {
+            this.nextQuestion();
+        });
+
+        this.viewerContainer.addEventListener("model-tap", () => {
+            if (this.currentView === "viewer") {
+                this.showDescription();
+            }
+        });
+
+        this.viewerContainer.addEventListener("click", (event) => {
+            if (
+                this.currentView === "viewer" &&
+                larven[this.currentIndex].type === "SOURCE:IMAGE" &&
+                event.target.tagName === "IMG"
+            ) {
+                this.showDescription();
+            }
+        });
+
+        this.viewerSection.hidden = true;
+        this.updateLanguage();
+    }
+
+    updateLanguage() {
+        const language = this.languageSelect.value;
+        const texts = quizTexts[language];
+
+        this.quizTitle.textContent = texts.title;
+        this.quizInstructions.textContent = texts.instructions;
+
+        this.quizPreviousButton.textContent = texts.previous;
+        this.previousButton.textContent = texts.previous;
+        this.nextButton.textContent = texts.next;
+        this.arButton.textContent = texts.viewAR;
+
+        if (this.currentView === "quiz") {
+            this.renderQuestion();
+        } else if (this.currentView === "viewer") {
+            const larve = larven[this.currentIndex];
+
+            this.maskDescription.textContent = larve.translations[language].description;
+        } else {
+            this.finishQuiz();
+        }
+    }
+
+    renderQuestion() {
+        const language = this.languageSelect.value;
+        const texts = quizTexts[language];
+        const larve = larven[this.currentIndex];
+
+        this.currentView = "quiz";
+
+        this.quizContainer.hidden = false;
+        this.viewerSection.hidden = true;
+
+        this.quizVerse.textContent = larve.translations[language].verse;
+
+        this.quizAnswers.replaceChildren();
+        this.quizFeedback.textContent = "";
+        this.quizFeedback.className = "quiz-feedback";
+
+        if (this.solvedQuestions.has(this.currentIndex)) {
+
+            const button = document.createElement("button");
+            button.type = "button";
+            button.textContent = texts.viewMask;
+
+            button.addEventListener("click", () => {
+                void this.showMask();
+            });
+
+            this.quizAnswers.appendChild(button);
+
+        } else {
+
+            this.answerOptions.forEach(option => {
+                const button = document.createElement("button");
+
+                button.type = "button";
+                button.textContent = option.name;
+
+                button.addEventListener("click", () => {
+                    this.checkAnswer(option.id, button);
+                });
+
+                this.quizAnswers.appendChild(button);
+            });
+        }
+
+        this.quizCounter.textContent = (this.currentIndex + 1) + "/" +  larven.length;
+
+        this.quizPreviousButton.disabled =
+            this.currentIndex === 0;
+    }
+
+    checkAnswer(selectedId, button) {
+        const larve = larven[this.currentIndex];
+        const texts = quizTexts[this.languageSelect.value];
+
+        if (selectedId === larve.id) {
+
+            this.solvedQuestions.add(this.currentIndex);
+
+            this.quizFeedback.textContent = texts.correct;
+            this.quizFeedback.className = "quiz-feedback correct";
+
+             void this.showMask();
+
+        } else {
+
+            this.quizFeedback.textContent = texts.incorrect;
+            this.quizFeedback.className = "quiz-feedback incorrect";
+
+            button.disabled = true;
+        }
+    }
+
+    async showMask() {
+        const larve = larven[this.currentIndex];
+        const language = this.languageSelect.value;
+
+        this.currentView = "viewer";
+
+        this.quizContainer.hidden = true;
+        this.viewerSection.hidden = false;
+
+        this.objectTitle.textContent = larve.name;
+        this.objectCounter.textContent = this.objectCounter.textContent = (this.currentIndex + 1) + " / " + larven.length;
+
+        this.maskDescription.textContent = larve.translations[language].description;
+
+        this.maskDescription.hidden = true;
+
+        try {
+            await this.mediaViewer.displayMedia(larve, language);
+        } catch (error) {
+            console.error("Could not display mask:", error);
+        }
+    }
+
+    showDescription() {
+        this.maskDescription.hidden = false;
+    }
+
+
+    previousQuestion() {
+        if (this.currentIndex === 0) {
+            return;
+        }
+
+        this.currentIndex--;
+        this.renderQuestion();
+    }
+
+    nextQuestion() {
+        if (!this.solvedQuestions.has(this.currentIndex)) {
+            return;
+        }
+
+        if (this.currentIndex < larven.length - 1) {
+            this.currentIndex++;
+            this.renderQuestion();
+        } else {
+            this.finishQuiz();
+        }
+    }
+
+    finishQuiz() {
+        const texts = quizTexts[this.languageSelect.value];
+
+        this.currentView = "finished";
+
+        this.viewerSection.hidden = true;
+        this.quizContainer.hidden = false;
+
+        this.quizTitle.textContent = texts.completed;
+        this.quizInstructions.textContent = "";
+
+        this.quizVerse.textContent = "";
+        this.quizFeedback.textContent = "";
+        this.quizAnswers.replaceChildren();
+
+        this.quizCounter.textContent = "";
+        this.quizPreviousButton.hidden = true;
+
+        const restartButton = document.createElement("button");
+        restartButton.type = "button";
+        restartButton.textContent = texts.restart;
+
+        restartButton.addEventListener("click", () => {
+            this.restartQuiz();
+        });
+
+        this.quizAnswers.appendChild(restartButton);
+    }
+
+    restartQuiz() {
+        this.currentIndex = 0;
+        this.solvedQuestions.clear();
+
+        this.quizPreviousButton.hidden = false;
+
+        this.updateLanguage();
+    }
+}
