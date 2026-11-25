@@ -103,28 +103,34 @@
 
         </article>
         <article id="exhibition-viewer"
-                 class="exhibit-card"
+                 class="fullscreen-viewer"
                  hidden>
 
-
-            <button id="open-ar-button" type="button">
-                In AR ansehen
-            </button>
+            <div class="viewer-toolbar">
+                <span id="object-title" class="viewer-title"></span>
+            </div>
 
             <div class="viewer-container">
                 <div id="viewer"></div>
 
-                <span id="object-title" class="viewer-title"> </span>
+                <div id="viewer-hint" class="viewer-hint">
+                    <div class="viewer-hint-glow"></div>
+                    <span class="viewer-hint-text">Mehr entdecken</span>
+                </div>
             </div>
-                <p id="mask-description" class="mask-info" hidden> </p>
 
+            <p id="mask-description" class="mask-info" hidden></p>
 
-            <div class="object-navigation">
+            <div class="object-navigation viewer-actions">
+                <span id="object-counter"></span>
+
                 <button id="previous-button" type="button">
                     ← Zurück
                 </button>
 
-                <span id="object-counter"> </span>
+                <button id="open-ar-button" type="button">
+                    In AR ansehen
+                </button>
 
                 <button id="next-button" type="button">
                     Weiter →

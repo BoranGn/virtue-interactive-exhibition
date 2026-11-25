@@ -10,7 +10,7 @@
  */
 
 
-import { larven } from "../MediaItems.js";
+import { questions } from "../MediaItems.js";
 
 const quizTexts = {
     de: {
@@ -39,7 +39,7 @@ const quizTexts = {
     }
 };
 
-export class LarvenQuiz {
+export class FasnachtCharacterQuiz {
     constructor(mediaViewer) {
         this.mediaViewer = mediaViewer;
         this.languageSelect = document.getElementById("language-select");
@@ -63,11 +63,14 @@ export class LarvenQuiz {
         this.nextButton = document.getElementById("next-button");
         this.arButton = document.getElementById("open-ar-button");
 
+        this.viewerHint = document.getElementById("viewer-hint");
+
         this.currentIndex = 0;
         this.currentView = "quiz";
         this.solvedQuestions = new Set();
 
-        this.answerOptions = [...larven].sort(() => Math.random() - 0.5);
+        this.answerOptions = [...questions].sort(() => Math.random() - 0.5);
+        this.questions = [...questions].sort(() => Math.random() - 0.5);
 
         this.languageSelect.addEventListener("change", () => {
             this.updateLanguage();
@@ -94,7 +97,7 @@ export class LarvenQuiz {
         this.viewerContainer.addEventListener("click", (event) => {
             if (
                 this.currentView === "viewer" &&
-                larven[this.currentIndex].type === "SOURCE:IMAGE" &&
+                this.questions[this.currentIndex].type === "SOURCE:IMAGE" &&
                 event.target.tagName === "IMG"
             ) {
                 this.showDescription();
@@ -120,9 +123,9 @@ export class LarvenQuiz {
         if (this.currentView === "quiz") {
             this.renderQuestion();
         } else if (this.currentView === "viewer") {
-            const larve = larven[this.currentIndex];
+            const character = this.questions[this.currentIndex];
 
-            this.maskDescription.textContent = larve.translations[language].description;
+            this.maskDescription.textContent = character.translations[language].description;
         } else {
             this.finishQuiz();
         }
@@ -131,14 +134,15 @@ export class LarvenQuiz {
     renderQuestion() {
         const language = this.languageSelect.value;
         const texts = quizTexts[language];
-        const larve = larven[this.currentIndex];
+        const character = this.questions[this.currentIndex];
 
         this.currentView = "quiz";
 
         this.quizContainer.hidden = false;
         this.viewerSection.hidden = true;
+        this.viewerHint.hidden = true;
 
-        this.quizVerse.textContent = larve.translations[language].verse;
+        this.quizVerse.textContent = character.translations[language].verse;
 
         this.quizAnswers.replaceChildren();
         this.quizFeedback.textContent = "";
@@ -172,17 +176,17 @@ export class LarvenQuiz {
             });
         }
 
-        this.quizCounter.textContent = (this.currentIndex + 1) + "/" +  larven.length;
+        this.quizCounter.textContent = (this.currentIndex + 1) + "/" +  questions.length;
 
         this.quizPreviousButton.disabled =
             this.currentIndex === 0;
     }
 
     checkAnswer(selectedId, button) {
-        const larve = larven[this.currentIndex];
+        const character = this.questions[this.currentIndex];
         const texts = quizTexts[this.languageSelect.value];
 
-        if (selectedId === larve.id) {
+        if (selectedId === character.id) {
 
             this.solvedQuestions.add(this.currentIndex);
 
@@ -201,7 +205,7 @@ export class LarvenQuiz {
     }
 
     async showMask() {
-        const larve = larven[this.currentIndex];
+        const character = this.questions[this.currentIndex];
         const language = this.languageSelect.value;
 
         this.currentView = "viewer";
@@ -209,22 +213,24 @@ export class LarvenQuiz {
         this.quizContainer.hidden = true;
         this.viewerSection.hidden = false;
 
-        this.objectTitle.textContent = larve.name;
-        this.objectCounter.textContent = this.objectCounter.textContent = (this.currentIndex + 1) + " / " + larven.length;
+        this.objectTitle.textContent = character.name;
+        this.objectCounter.textContent = (this.currentIndex + 1) + " / " + this.questions.length;
 
-        this.maskDescription.textContent = larve.translations[language].description;
+        this.maskDescription.textContent = character.translations[language].description;
 
         this.maskDescription.hidden = true;
+        this.viewerHint.hidden = false;
 
         try {
-            await this.mediaViewer.displayMedia(larve, language);
+            await this.mediaViewer.displayMedia(character, language);
         } catch (error) {
             console.error("Could not display mask:", error);
         }
     }
 
     showDescription() {
-        this.maskDescription.hidden = false;
+        this.maskDescription.hidden = !this.maskDescription.hidden;
+        this.viewerHint.hidden = !this.maskDescription.hidden;
     }
 
 
@@ -242,7 +248,7 @@ export class LarvenQuiz {
             return;
         }
 
-        if (this.currentIndex < larven.length - 1) {
+        if (this.currentIndex < this.questions.length - 1) {
             this.currentIndex++;
             this.renderQuestion();
         } else {
@@ -282,6 +288,9 @@ export class LarvenQuiz {
     restartQuiz() {
         this.currentIndex = 0;
         this.solvedQuestions.clear();
+
+        this.questions = [...questions].sort(() => Math.random() - 0.5);
+        this.answerOptions = [...questions].sort(() => Math.random() - 0.5);
 
         this.quizPreviousButton.hidden = false;
 

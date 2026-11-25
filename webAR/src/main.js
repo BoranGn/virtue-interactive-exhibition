@@ -1,4 +1,4 @@
-import {LarvenQuiz} from "./ui/LarvenQuiz.js";
+import {FasnachtCharacterQuiz} from "./ui/FasnachtCharacterQuiz.js";
 import {MediaViewer} from "./viewers/MediaViewer";
 import {setUpSearch} from "./vitrvr/VitrivrSearch";
 import {ARViewer} from "./viewers/ARViewer";
@@ -11,59 +11,61 @@ THREE.Cache.enabled = true;
 
 const languageSelect = document.getElementById("language-select");
 
+const welcomePage = document.getElementById("welcome-page");
 const exhibitionPage = document.getElementById("exhibition-page");
 const explorePage = document.getElementById("explore-page");
 
+
 const params = new URLSearchParams(window.location.search);
-const station = params.get("station") ?? "larven";
+const station = params.get("station");
 
-const exhibitionARViewer = new ARViewer(
-    "ar-model",
-    "open-ar-button"
-);
+welcomePage.hidden = true;
+exhibitionPage.hidden = true;
+explorePage.hidden = true;
 
-const exploreARViewer = new ARViewer(
-    "ar-model-explore",
-    "open-ar-button-explore"
-);
+switch (station) {
+    case "larven": {
+        exhibitionPage.hidden = false;
 
-const exhibitionViewer = new MediaViewer(
-    document.getElementById("viewer"),
-    exhibitionARViewer
-);
+        const exhibitionARViewer = new ARViewer(
+            "ar-model",
+            "open-ar-button"
+        );
 
-const exploreViewer = new MediaViewer(
-    document.getElementById("explore-viewer"),
-    exploreARViewer
-);
+        const exhibitionViewer = new MediaViewer(
+            document.getElementById("viewer"),
+            exhibitionARViewer
+        );
 
-THREE.Cache.enabled = true;
+        new FasnachtCharacterQuiz(exhibitionViewer);
+        break;
+    }
 
-//Scene
-let currentLanguage = "en";
+    case "archiv": {
+        explorePage.hidden = false;
 
-languageSelect.addEventListener("change", () => {
-    currentLanguage = languageSelect.value;
-});
+        const exploreARViewer = new ARViewer(
+            "ar-model-explore",
+            "open-ar-button-explore"
+        );
 
-function showPage(page) {
-    const isExhibition = page === "exhibition";
+        const exploreViewer = new MediaViewer(
+            document.getElementById("explore-viewer"),
+            exploreARViewer
+        );
 
-    exhibitionPage.hidden = !isExhibition;
-    explorePage.hidden = isExhibition;
-    exhibitionButton.setAttribute("aria-current", isExhibition ? "page" : "false");
-    exploreButton.setAttribute("aria-current", isExhibition ? "false" : "page");
+        setUpSearch(exploreViewer, languageSelect);
+        break;
+    }
 
-    exhibitionButton.classList.toggle("active", isExhibition);
-    exploreButton.classList.toggle("active", !isExhibition);
+    case "musik": {
+        // TODO: Initialise music station
+        welcomePage.hidden = false;
+        break;
+    }
+
+    default: {
+        welcomePage.hidden = false;
+        break;
+    }
 }
-
-
-exhibitionButton.addEventListener("click", () => showPage("exhibition"));
-exploreButton.addEventListener("click", () => showPage("explore"));
-
-
-setUpExhibition(exhibitionViewer,languageSelect);
-setUpSearch(exploreViewer,languageSelect);
-
-console.log(languageSelect.value);

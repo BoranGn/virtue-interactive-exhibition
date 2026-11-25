@@ -1,3 +1,6 @@
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:wght@400;500;600;700&display=swap');
+
 * {
     box-sizing: border-box;
 }
@@ -9,48 +12,73 @@ html {
 body {
     margin: 0;
     padding: 12px;
-    font-family: Arial, sans-serif;
+    font-family: "DM Sans", Arial, sans-serif;
+
     background:
             linear-gradient(
-                    rgba(255, 255, 255, 0.65),
-                    rgba(255, 255, 255, 0.65)
+                    rgba(255, 255, 255, 0.42),
+                    rgba(255, 255, 255, 0.42)
             ),
             url("/assets/confetti_background.jpg");
+
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    color: #18181b;
+
+    color: #242b35;
     overflow-x: hidden;
 }
+
+/* General elements */
 
 button,
 input,
 select {
+    font-family: inherit;
     font-size: 16px;
     min-height: 44px;
 }
 
 button {
-    padding: 10px 14px;
+    padding: 10px 16px;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
     cursor: pointer;
+    font-weight: 600;
+
+    transition: background-color 0.2s, transform 0.15s;
 }
+
+button:active:not(:disabled) {
+    transform: scale(0.98);
+}
+
+button:focus-visible,
+a:focus-visible,
+select:focus-visible,
+input:focus-visible {
+    outline: 3px solid #8296ab;
+    outline-offset: 3px;
+}
+
+h2 {
+    font-family: "Fraunces", Georgia, serif;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+    color: #263b52;
+}
+
+/* Header */
 
 .app-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 12px;
-    margin-bottom: 12px;
-}
-.header-brand {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    min-width: 0;
+    margin-bottom: 20px;
 }
 
+.header-brand,
 .branding-group {
     display: flex;
     align-items: center;
@@ -74,66 +102,188 @@ button {
 
 .branding h1 {
     margin: 0;
-    font-size: 24px;
-    color: #c83737;
+    font-family: "Fraunces", Georgia, serif;
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: -0.7px;
+    color: #263b52;
 }
 
 .branding p {
-    margin: 0;
-    color: gray;
+    margin: 3px 0 0;
+    color: #647080;
     font-size: 12px;
 }
+
+/* Language selection */
 
 #language-select {
     max-width: 140px;
     margin-left: auto;
+    padding: 9px 12px;
+
+    background: rgba(255, 255, 255, 0.94);
+    color: #263b52;
+
+    border: 1px solid #b9c4d0;
+    border-radius: 10px;
+
+    font-weight: 600;
+    cursor: pointer;
 }
 
+/* Welcome page */
+
+#welcome-page {
+    text-align: center;
+    padding: 32px 12px;
+}
+
+#welcome-page h2 {
+    font-size: clamp(27px, 4vw, 38px);
+    margin-bottom: 14px;
+}
+
+#welcome-page p {
+    color: #566372;
+    line-height: 1.7;
+}
+
+.station-navigation {
+    display: grid;
+    gap: 14px;
+    margin: 32px auto 0;
+    max-width: 650px;
+}
+
+.station-navigation a {
+    display: block;
+    padding: 22px 18px;
+
+    background: rgba(255, 255, 255, 0.94);
+    border: 1px solid #d2d9e1;
+    border-radius: 14px;
+
+    text-align: center;
+    text-decoration: none;
+    color: #263b52;
+
+    font-family: "Fraunces", Georgia, serif;
+    font-size: 19px;
+    font-weight: 600;
+
+    box-shadow: 0 3px 12px rgba(30, 47, 66, 0.05);
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+@media (hover: hover) {
+    .station-navigation a:hover {
+        background: #edf1f5;
+        transform: translateY(-2px);
+    }
+}
+
+/* General cards */
 
 .exhibit-card {
-    border: 1px solid #e4e4e7;
-    border-radius: 12px;
-    padding: 8px;
-    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid #d6dce3;
+    border-radius: 16px;
+    padding: 16px;
+
+    background: rgba(255, 255, 255, 0.91);
+    box-shadow: 0 4px 20px rgba(30, 47, 66, 0.04);
+}
+
+/* Larven quiz */
+
+#quiz-title {
+    font-size: clamp(25px, 3vw, 34px);
+    margin: 10px 0 20px;
+}
+
+#quiz-instructions {
+    color: #596575;
+    line-height: 1.6;
 }
 
 .quiz-verse {
     white-space: pre-line;
-    line-height: 1.7;
-    padding: 16px;
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 12px;
+
+    font-family: "Fraunces", Georgia, serif;
+    font-size: clamp(18px, 2vw, 22px);
+    font-weight: 400;
+    line-height: 1.9;
+
+    color: #29394a;
+
+    padding: 20px 24px;
+    margin: 24px 0;
+
+    background: rgba(244, 246, 248, 0.85);
+    border-left: 3px solid #8395a8;
+    border-radius: 8px;
 }
+
+/* Quiz answers */
 
 .quiz-answers {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-    margin: 20px 0;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin: 22px 0;
+}
+
+.quiz-answers button {
+    min-height: 54px;
+    padding: 12px;
+
+    background: #e9edf2;
+    color: #263b52;
+
+    border: 1px solid #d1d9e2;
+    border-radius: 11px;
+
+    font-size: 16px;
+    font-weight: 600;
+}
+
+@media (hover: hover) {
+    .quiz-answers button:not(:disabled):hover {
+        background: #d8e1eb;
+        border-color: #aab9c8;
+        transform: translateY(-2px);
+    }
+}
+
+.quiz-answers button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
 }
 
 .quiz-feedback.correct {
-    color: green;
+    color: #30634e;
+    font-weight: 600;
 }
 
 .quiz-feedback.incorrect {
-    color: #c83737;
+    color: #a63b43;
+    font-weight: 600;
 }
+
+/* Media viewers */
 
 .viewer-container {
     position: relative;
 }
 
-#viewer{
+#viewer {
     width: 100%;
-    height: 80dvh;
-    min-height: 280px;
-    max-height: 700px;
+    height: 100%;
     overflow: hidden;
     touch-action: none;
 }
 
-#explore-viewer{
+#explore-viewer {
     width: 100%;
     height: 80dvh;
     min-height: 280px;
@@ -147,17 +297,7 @@ button {
     display: block;
 }
 
-.viewer-title {
-    position: absolute;
-    top: 8px;
-    left: 8px;
-    padding: 8px 12px;
-    border-radius: 8px;
-    background: rgba(255, 214, 90, 0.95);
-    font-size: 14px;
-    font-weight: 600;
-    pointer-events: none;
-}
+/* Object navigation */
 
 .object-navigation {
     display: flex;
@@ -167,46 +307,42 @@ button {
     margin-top: 12px;
 }
 
-
 .object-navigation button:disabled {
     opacity: 0.35;
     cursor: not-allowed;
     filter: grayscale(100%);
 }
 
-#object-counter {
-    font-size: 14px;
-    white-space: nowrap;
-}
-
+#object-counter,
 #explore-object-counter {
     font-size: 14px;
     white-space: nowrap;
+    color: #596575;
 }
 
+/* Archive search */
 
 .page-intro {
     margin-bottom: 20px;
 }
 
 .eyebrow {
-    color: #c83737;
+    color: #536b85;
     font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 1px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
 }
 
 .page-intro h2 {
     margin: 12px 0;
-    font-size: 24px;
+    font-size: 26px;
 }
 
 .page-intro p {
     margin: 0;
-    color: #71717a;
-    line-height: 1.5;
+    color: #66717d;
+    line-height: 1.6;
 }
-
 
 .search-bar {
     display: flex;
@@ -216,31 +352,22 @@ button {
 .search-bar input {
     flex: 1;
     min-width: 0;
-    padding: 10px;
-    border: 1px solid #d4d4d8;
-    border-radius: 8px;
-}
+    padding: 10px 14px;
 
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid #c9d3dd;
+    border-radius: 10px;
+}
 
 .search-results {
     margin-top: 16px;
 }
 
-.search-viewer {
-    width: 100%;
-    min-height: 280px;
-    background: #f3f4f6;
-    border-radius: 12px;
-    overflow: hidden;
-}
-
-
-
-[hidden] {
-    display: none !important;
-}
+/* Audio and video */
 
 #viewer:has(audio),
+#viewer:has(video),
+#explore-viewer:has(audio),
 #explore-viewer:has(video) {
     display: flex;
     justify-content: center;
@@ -250,24 +377,39 @@ button {
 #viewer audio,
 #explore-viewer audio {
     width: min(90%, 500px);
-    height: min(90%, 200px);
 }
+
+#viewer video,
+#explore-viewer video {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/* Primary buttons */
 
 #next-button,
 #next-button-explore,
 #open-ar-button,
 #open-ar-button-explore,
 .search-bar button {
-    background: #3158a5;
+    background: #304b69;
     color: white;
+    font-weight: 600;
 }
 
-#open-ar-button,
+@media (hover: hover) {
+    #next-button:hover,
+    #next-button-explore:hover,
+    #open-ar-button:not(:disabled):hover,
+    #open-ar-button-explore:not(:disabled):hover,
+    .search-bar button:hover {
+        background: #253b53;
+    }
+}
+
 #open-ar-button-explore {
     margin-top: 12px;
 }
-
-
 
 #open-ar-button:disabled,
 #open-ar-button-explore:disabled {
@@ -275,12 +417,276 @@ button {
     cursor: not-allowed;
 }
 
+/* AR model elements */
+
 .ar-model {
     position: absolute;
     width: 1px;
     height: 1px;
     left: -9999px;
 }
+
+/* Fullscreen viewer */
+
+.fullscreen-viewer {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    height: 100dvh;
+
+    padding-top: max(12px, env(safe-area-inset-top));
+    padding-right: max(12px, env(safe-area-inset-right));
+    padding-bottom: max(12px, env(safe-area-inset-bottom));
+    padding-left: max(12px, env(safe-area-inset-left));
+
+    background: #18232f;
+    color: #f3f5f7;
+    overflow: hidden;
+}
+
+/* Fullscreen title */
+
+.viewer-toolbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    padding-bottom: 12px;
+}
+
+.viewer-title {
+    display: block;
+    max-width: 100%;
+    padding: 10px 22px;
+
+    background: #e5eaf0;
+    color: #263b52;
+
+    border: 1px solid #c5d0db;
+    border-radius: 10px;
+
+    font-family: "Fraunces", Georgia, serif;
+    font-size: 19px;
+    font-weight: 600;
+
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Fullscreen 3D / image area */
+
+.fullscreen-viewer .viewer-container {
+    flex: 1;
+    min-height: 0;
+    width: 100%;
+
+    background: #080b10;
+    border: 1px solid #344252;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+#exhibition-viewer #viewer img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Mask description */
+
+.mask-info {
+    white-space: pre-line;
+    line-height: 1.7;
+}
+
+.fullscreen-viewer .mask-info {
+    flex-shrink: 0;
+    max-height: 25dvh;
+    overflow-y: auto;
+
+    margin: 12px 0;
+    padding: 16px;
+
+    background: #263443;
+    color: #f3f5f7;
+
+    border: 1px solid #3a4b5d;
+    border-radius: 10px;
+
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+/* Fullscreen navigation */
+
+.fullscreen-viewer .object-navigation {
+    flex-shrink: 0;
+    margin-top: 0;
+    padding-top: 12px;
+    border-top: 1px solid #3a4858;
+}
+
+.viewer-actions {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    align-items: center;
+}
+
+.viewer-actions button {
+    min-width: 0;
+    padding: 10px 6px;
+    font-size: 14px;
+}
+
+.viewer-actions #previous-button {
+    background: #354556;
+    color: white;
+}
+
+.viewer-actions #open-ar-button {
+    margin-top: 0;
+}
+
+.viewer-actions #object-counter {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    text-align: center;
+    color: #cbd5df;
+}
+
+/* Interactive hint */
+
+.viewer-hint {
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    pointer-events: none;
+}
+
+.viewer-hint-glow {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+
+    background: radial-gradient(
+            circle,
+            rgba(206, 220, 235, 0.38) 0%,
+            rgba(206, 220, 235, 0.16) 45%,
+            rgba(206, 220, 235, 0) 75%
+    );
+
+    animation: viewerPulse 1.8s ease-in-out infinite;
+}
+
+.viewer-hint-text {
+    position: absolute;
+    bottom: 18px;
+
+    padding: 8px 14px;
+    border-radius: 999px;
+
+    background: rgba(24, 35, 47, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+
+    color: #f3f5f7;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+@keyframes viewerPulse {
+    0%, 100% {
+        transform: scale(0.9);
+        opacity: 0.5;
+    }
+
+    50% {
+        transform: scale(1.15);
+        opacity: 1;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .viewer-hint-glow {
+        animation: none;
+    }
+}
+
+/* Prevent background scrolling */
+
+body:has(#exhibition-viewer:not([hidden])) {
+    overflow: hidden;
+}
+
+/* Visibility */
+
+[hidden] {
+    display: none !important;
+}
+
+/* Small screens */
+
+@media (max-width: 480px) {
+
+    .app-header {
+        gap: 8px;
+    }
+
+    .header-waggis {
+        width: 44px;
+        height: 44px;
+    }
+
+    .branding-group {
+        gap: 6px;
+    }
+
+    .branding h1 {
+        font-size: 21px;
+    }
+
+    .branding p {
+        font-size: 10px;
+    }
+
+    .unibas-logo {
+        width: 66px;
+        height: 50px;
+    }
+
+    #language-select {
+        max-width: 100px;
+        padding: 8px 4px;
+        font-size: 13px;
+    }
+
+    .quiz-verse {
+        padding: 16px;
+        line-height: 1.8;
+    }
+
+    .quiz-answers {
+        gap: 8px;
+    }
+
+    .quiz-answers button {
+        font-size: 14px;
+    }
+}
+
+/* Desktop */
 
 @media (min-width: 900px) {
 
@@ -301,31 +707,15 @@ button {
     }
 
     .app-header {
-        margin-bottom: 24px;
+        margin-bottom: 28px;
     }
 
     .branding h1 {
-        font-size: 30px;
+        font-size: 32px;
     }
 
     .exhibit-card {
-        padding: 20px;
-    }
-
-    #viewer{
-        height: 65dvh;
-        min-height: 450px;
-        max-height: 700px;
-    }
-
-    .viewer-title {
-        top: 20px;
-        left: 20px;
-        font-size: 16px;
-    }
-
-    .object-navigation {
-        margin-top: 20px;
+        padding: 26px;
     }
 
     .page-intro h2 {
@@ -334,5 +724,29 @@ button {
 
     .search-bar {
         max-width: 700px;
+    }
+
+    .viewer-actions {
+        grid-template-columns: auto 1fr auto auto;
+    }
+
+    .viewer-actions #previous-button {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .viewer-actions #object-counter {
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    .viewer-actions #open-ar-button {
+        grid-column: 3;
+        grid-row: 1;
+    }
+
+    .viewer-actions #next-button {
+        grid-column: 4;
+        grid-row: 1;
     }
 }

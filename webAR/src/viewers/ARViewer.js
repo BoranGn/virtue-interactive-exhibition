@@ -3,8 +3,6 @@ export class ARViewer {
         this.arModel = document.getElementById(modelId);
         this.openArButton = document.getElementById(buttonId);
 
-        this.openArButton.disabled = true;
-
         this.openArButton.addEventListener('click',async() => {
             try{
                 await this.arModel.activateAR();

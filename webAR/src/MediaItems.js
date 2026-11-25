@@ -7,7 +7,7 @@
  * - Store descriptions and verses in multiple languages.
  */
 
-export const larven = [
+export const questions = [
     {
         id: "waggis",
         name: "Waggis",
@@ -128,7 +128,7 @@ for only then can he play such pranks.`
         id: "dummpeter",
         name: "Dummpeter",
         type: "SOURCE:MESH",
-        path: null, // TODO: Add scanned model
+        path: "/models/Dummpeter.glb",
         translations: {
             de: {
                 description: `Sein Kostüm erinnert an die Zeit des Biedermeiers und des Rokokos. Farblich ist es meist in hellblau oder altrosa gehalten. Die Larve vom Dummpeter hat feine, rosafarbene Bäckchen. Seine Augen blicken meist gen Himmel, er wirkt in seiner ganzen Ausstrahlung verträumt und vor sich hin schwebend. Vorne am Kostüm ist ein Jabot zu erkennen, und besonders sein spezielles Hütchen macht ihn einzigartig. Ein weiteres Merkmal ist seine kleine, gold farbene Trompete. Über den Dummpeter wird oft erzählt, dass er das «r» im Namen der Trompete (Dumpete, statt Drumpete) nicht sagen konnte, und so der Name Dummpeter entstanden sei.`,
@@ -167,12 +167,12 @@ he'd much rather daydream than be here.`
         id: "altfrangg",
         name: "Altfrangg",
         type: "SOURCE:MESH",
-        path: "/models/Altfrangg.glb",
+        path: "/models/AltFrangg.glb",
         translations: {
             de: {
                 description: `Er ist ein Mann von vornehmer Gesinnung, eine Art Edelmann, aus dem Spätbarock. Sein Kostüm besteht aus einem Frack aus Samt. Dazu trägt er schwarze, dreiviertellange Hosen und weisse Kniesocken. Um den Hals hat er sich ein Spitzenjabot gebunden, die Füsse kleiden schwarze Schnallenschuhe mit Absatz. Sein Haupt bedeckt ein Dreizackhut mit einem Federbusch. Oft hat er einen etwas dümmlichen, aber liebenswerten Gesichtsausdruck. Es gibt auch einen gleichnamigen Pfeifer- und Trommelmarsch.`,
 
-                verse: `Dr Altfrangg mit syym chique Huet,
+                verse: `Dr ... mit syym chique Huet,
 duet wie wild dr Stägge schwinge.
 Denn dirigiere kaaner guet,
 duet d Damboure in Yklang bringe.
@@ -185,7 +185,7 @@ er gniesst die tolle Fasnachtsdeen.`
             en: {
                 description: `He is a man of noble character, a kind of gentleman from the late Baroque period. His costume consists of a velvet tailcoat. He also wears black three-quarter-length trousers and white knee-high socks. A lace jabot is tied around his neck, and he wears black buckled shoes with heels. His head is covered by a tricorne hat with a plume of feathers. He often has a slightly foolish but endearing facial expression. There is also a piccolo and drum march named after him.`,
 
-                verse: `The Altfrangg with his stylish hat,
+                verse: `The ... with his stylish hat,
 swings his baton with all his might.
 For no one can conduct like that,
 bringing the drummers together just right.
@@ -202,7 +202,7 @@ he enjoys these wonderful Fasnacht days.`
         id: "pierrot",
         name: "Pierrot",
         type: "SOURCE:MESH",
-        path: null, // TODO: Add scanned model
+        path: "/models/Pierrot.glb",
         translations: {
             de: {
                 description: `Diese Figur sah man bereits im 16. Jahrhundert in Frankreich. Ab 1816 wurde der Pierrot vom bekannten PantomimeKünstler Jean-Gaspard Deburau geprägt. Dieser trug nämlich damals schon das unverkennbare schwarze Käppchen. Zur Basler Variante gehört ausserdem eine Pfauenfeder, die daran befestigt ist. Der Pierrot ist verträumt, liebenswert, manchmal auch melancholisch. Sein Kostüm ist sehr beliebt und wird oft an der Fasnacht gesehen.`,
