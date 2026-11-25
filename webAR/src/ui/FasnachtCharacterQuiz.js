@@ -60,7 +60,7 @@ export class FasnachtCharacterQuiz {
         this.viewerContainer = document.getElementById("viewer");
         this.objectTitle = document.getElementById("object-title");
         this.objectCounter = document.getElementById("object-counter");
-        this.maskDescription = document.getElementById("mask-description");
+        this.objectDescription = document.getElementById("object-description");
 
         this.previousButton = document.getElementById("previous-button");
         this.nextButton = document.getElementById("next-button");
@@ -90,6 +90,10 @@ export class FasnachtCharacterQuiz {
 
         this.nextButton.addEventListener("click", () => {
             this.nextQuestion();
+        });
+
+        this.objectDescription.addEventListener("click", () => {
+            this.showDescription();
         });
 
         this.viewerContainer.addEventListener("model-tap", () => {
@@ -130,7 +134,7 @@ export class FasnachtCharacterQuiz {
         } else if (this.currentView === "viewer") {
             const character = this.questions[this.currentIndex];
 
-            this.maskDescription.textContent = character.translations[language].description;
+            this.objectDescription.textContent = character.translations[language].description;
         } else {
             this.finishQuiz();
         }
@@ -180,6 +184,7 @@ export class FasnachtCharacterQuiz {
                 this.quizAnswers.appendChild(button);
             });
         }
+        this.quizVerse.hidden = false;
 
         this.quizCounter.textContent = (this.currentIndex + 1) + "/" +  questions.length;
 
@@ -221,9 +226,9 @@ export class FasnachtCharacterQuiz {
         this.objectTitle.textContent = character.name;
         this.objectCounter.textContent = (this.currentIndex + 1) + " / " + this.questions.length;
 
-        this.maskDescription.textContent = character.translations[language].description;
+        this.objectDescription.textContent = character.translations[language].description;
 
-        this.maskDescription.hidden = true;
+        this.objectDescription.hidden = true;
         this.viewerHint.hidden = false;
 
         try {
@@ -234,8 +239,8 @@ export class FasnachtCharacterQuiz {
     }
 
     showDescription() {
-        this.maskDescription.hidden = !this.maskDescription.hidden;
-        this.viewerHint.hidden = !this.maskDescription.hidden;
+        this.objectDescription.hidden = !this.objectDescription.hidden;
+        this.viewerHint.hidden = !this.objectDescription.hidden;
     }
 
 

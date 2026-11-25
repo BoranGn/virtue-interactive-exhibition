@@ -1,4 +1,5 @@
 import {FasnachtCharacterQuiz} from "./ui/FasnachtCharacterQuiz.js";
+import {MusicStation} from "./ui/MusicStation.js";
 import {MediaViewer} from "./viewers/MediaViewer";
 import {setUpSearch} from "./vitrvr/VitrivrSearch";
 import {ARViewer} from "./viewers/ARViewer";
@@ -18,6 +19,9 @@ const explorePage = document.getElementById("explore-page");
 
 const params = new URLSearchParams(window.location.search);
 const station = params.get("station");
+
+console.log("Hello");
+
 
 welcomePage.hidden = true;
 exhibitionPage.hidden = true;
@@ -59,8 +63,22 @@ switch (station) {
     }
 
     case "musik": {
-        // TODO: Initialise music station
-        welcomePage.hidden = false;
+        exhibitionPage.hidden = false;
+
+        document.getElementById("larven-quiz").hidden = true;
+        document.getElementById("music-station").hidden = false;
+
+        const exhibitionARViewer = new ARViewer(
+            "ar-model",
+            "open-ar-button"
+        );
+
+        const exhibitionViewer = new MediaViewer(
+            document.getElementById("viewer"),
+            exhibitionARViewer
+        );
+
+        new MusicStation(exhibitionViewer);
         break;
     }
 

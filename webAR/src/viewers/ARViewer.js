@@ -3,22 +3,6 @@ export class ARViewer {
         this.arModel = document.getElementById(modelId);
         this.openArButton = document.getElementById(buttonId);
 
-        this.arModel.addEventListener("load", () => {
-            const dimensions = this.arModel.getDimensions();
-            const modelHeight = dimensions.y;
-
-            if (modelHeight <= 0) return;
-
-            const scaleFactor = 0.3 / modelHeight;
-
-            this.arModel.scale = [
-                scaleFactor,
-                scaleFactor,
-                scaleFactor
-            ];
-        });
-
-
         this.openArButton.addEventListener('click',async() => {
             try{
                 await this.arModel.activateAR();
@@ -31,7 +15,6 @@ export class ARViewer {
     }
     setModel(path) {
         this.openArButton.hidden = false;
-        this.arModel.scale = [1, 1, 1];
         this.arModel.src = path;
     }
     disable(){

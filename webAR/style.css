@@ -19,7 +19,7 @@ body {
                     rgba(255, 255, 255, 0.42),
                     rgba(255, 255, 255, 0.42)
             ),
-            url("/assets/confetti_background.jpg");
+            url("/assets/confetti-background.jpg");
 
     background-size: cover;
     background-position: center;
@@ -190,12 +190,14 @@ h2 {
 }
 
 
-#quiz-title {
+#quiz-title,
+#music-title{
     font-size: clamp(25px, 3vw, 34px);
     margin: 10px 0 20px;
 }
 
-#quiz-instructions {
+#quiz-instructions,
+#music-instructions {
     color: #596575;
     line-height: 1.6;
 }
@@ -226,7 +228,8 @@ h2 {
     margin: 22px 0;
 }
 
-.quiz-answers button {
+.quiz-answers button,
+.music-card button {
     min-height: 54px;
     padding: 12px;
 
@@ -241,7 +244,8 @@ h2 {
 }
 
 @media (hover: hover) {
-    .quiz-answers button:not(:disabled):hover {
+    .quiz-answers button:not(:disabled):hover,
+    .music-card button:not(:disabled):hover{
         background: #d8e1eb;
         border-color: #aab9c8;
         transform: translateY(-2px);
@@ -261,6 +265,39 @@ h2 {
 .quiz-feedback.incorrect {
     color: #a63b43;
     font-weight: 600;
+}
+
+.music-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+}
+
+.music-card {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    padding: 18px;
+    background: #f4f6f8;
+    border: 1px solid #d6dce3;
+    border-radius: 12px;
+}
+
+.music-card h3 {
+    margin: 0;
+    color: #263b52;
+}
+
+.music-card p {
+    flex: 1;
+    margin: 0;
+    color: #596575;
+    line-height: 1.6;
+}
+
+.music-card button {
+    width: 100%;
 }
 
 
@@ -379,6 +416,7 @@ h2 {
 #next-button-explore,
 #open-ar-button,
 #open-ar-button-explore,
+#instrument-audio-button,
 .search-bar button {
     background: #304b69;
     color: white;
@@ -390,6 +428,7 @@ h2 {
     #next-button-explore:hover,
     #open-ar-button:not(:disabled):hover,
     #open-ar-button-explore:not(:disabled):hover,
+    #instrument-audio-button:not(:disabled):hover,
     .search-bar button:hover {
         background: #253b53;
     }
@@ -430,7 +469,7 @@ h2 {
     padding-bottom: max(12px, env(safe-area-inset-bottom));
     padding-left: max(12px, env(safe-area-inset-left));
 
-    background: #18232f;
+    background: #263b52;
     color: #f3f5f7;
     overflow: hidden;
 }
@@ -440,29 +479,22 @@ h2 {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-shrink: 0;
     padding-bottom: 12px;
 }
 
 .viewer-title {
-    display: block;
-    max-width: 100%;
-    padding: 10px 22px;
-
-    background: #e5eaf0;
-    color: #263b52;
-
-    border: 1px solid #c5d0db;
-    border-radius: 10px;
-
     font-family: "Fraunces", Georgia, serif;
-    font-size: 19px;
+    font-size: 26px;
     font-weight: 600;
+    color: white;
+
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 8px 0;
 
     text-align: center;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
 }
 
 
@@ -485,27 +517,43 @@ h2 {
 }
 
 
-.mask-info {
+.object-info {
     white-space: pre-line;
     line-height: 1.7;
 }
 
-.fullscreen-viewer .mask-info {
-    flex-shrink: 0;
-    max-height: 25dvh;
+
+
+.fullscreen-viewer .viewer-container .object-info {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+
+    width: 85%;
+    max-height: 70%;
     overflow-y: auto;
 
-    margin: 12px 0;
+    margin: 0;
     padding: 16px;
 
-    background: #263443;
-    color: #f3f5f7;
+    background: rgba(24, 45, 70, 0.50);
+    color: white;
 
-    border: 1px solid #3a4b5d;
-    border-radius: 10px;
+    border: 1px solid rgba(180, 205, 230, 0.25);
+    border-radius: 12px;
 
-    font-size: 19px;
-    line-height: 1.9;
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+
+    font-size: 20px;
+    line-height: 1.5;
+    text-align: center;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.9);
+
+    cursor: pointer;
+    isolation: isolate;
 }
 
 
@@ -532,10 +580,6 @@ h2 {
 .viewer-actions #previous-button {
     background: #354556;
     color: white;
-}
-
-.viewer-actions #open-ar-button {
-    margin-top: 0;
 }
 
 .viewer-actions #object-counter {
@@ -659,12 +703,17 @@ body:has(#exhibition-viewer:not([hidden])) {
         gap: 8px;
     }
 
-    .quiz-answers button {
+    .quiz-answers button,
+    .music-card button{
         font-size: 14px;
     }
 }
 
 @media (min-width: 900px) {
+
+    .music-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
 
     .unibas-logo {
         width: 180px;

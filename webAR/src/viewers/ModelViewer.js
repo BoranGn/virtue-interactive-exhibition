@@ -1,5 +1,6 @@
 import * as THREE from "three";
 import {loadModel} from "../loaders/ModelLoader";
+import {RoomEnvironment} from "three/addons/environments/RoomEnvironment.js";
 import {SceneManager} from "../SceneManager";
 import {createControls} from "../controls/Controls";
 
@@ -7,15 +8,25 @@ export class ModelViewer{
     constructor(viewer){
         this.viewer = viewer;
         this.renderer = new THREE.WebGLRenderer({antialias: true});
+        this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
+        this.renderer.toneMappingExposure = 0.8;
         this.renderer.setSize(viewer.clientWidth || 1 , viewer.clientHeight || 1);
         this.viewer.appendChild(this.renderer.domElement);
 
         this.activeScene = null;
         this.modelGroup = null;
 
-        this.camera = new THREE.PerspectiveCamera(75, viewer.clientWidth || 1 / viewer.clientHeight || 1, 0.1, 1000);
+        this.camera = new THREE.PerspectiveCamera(75, (viewer.clientWidth || 1) / (viewer.clientHeight || 1), 0.1, 1000);
         this.controls= createControls(this.camera,this.renderer);
         this.sceneManager = new SceneManager(this.renderer);
+
+        const pmremGenerator = new THREE.PMREMGenerator(this.renderer);
+
+        this.environmentMap = pmremGenerator.fromScene(
+            new RoomEnvironment()
+        ).texture;
+
+        pmremGenerator.dispose();
 
         this.raycaster = new THREE.Raycaster();
         this.pointer = new THREE.Vector2();
@@ -62,6 +73,10 @@ export class ModelViewer{
     async showScene(path) {
         const scene = new THREE.Scene();
 
+
+        scene.environment = this.environmentMap;
+        scene.environmentIntensity = 0.5;
+
         this.modelGroup = null;
         this.activeScene = scene;
         this.sceneManager.setScene(scene, this.camera);
@@ -81,8 +96,7 @@ export class ModelViewer{
 
         scene.add(modelGroup);
 
-        const light = new THREE.HemisphereLight(0xffffff, 0x444444, 3);
-        scene.add(light);
+
 
         this.controls.target.set(0, 0, 0);
         this.controls.update();

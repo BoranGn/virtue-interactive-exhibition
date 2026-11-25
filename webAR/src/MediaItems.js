@@ -12,7 +12,7 @@ export const questions = [
         id: "waggis",
         name: "Waggis",
         type: "SOURCE:MESH",
-        path: "/models/Waggis.glb",
+        path: "/models/uelibeforeblender.glb",
         translations: {
             de: {
 
@@ -57,7 +57,7 @@ Try to catch them! It's not hard, I swear.`
         id: "alti-dante",
         name: "Alti Dante",
         type: "SOURCE:MESH",
-        path: "/models/AltiDante.glb",
+        path: "/models/alti-dante.glb",
         translations: {
             de: {
                 description: `Diese Fasnachtsfigur entstand Ende des 19. Jahrhunderts und ist bis heute sehr beliebt. Die alti Dante ist eine durchaus humoristisch gemeinte Imitation der gehobenen Basler Gesellschaft. Ihr Kostüm ist zweiteilig und besteht aus einem Rock und einer Jacke. Ihre Larve hat nicht selten eine spitze Nase, auf der eine Brille sitzt. Oft hat sie einen Kussmund und wirkt manchmal ein bisschen hochnäsig. Als Kopfbedeckung dient ihr immer ein reich mit Blumen verzierter Hut. Als Accessoires führt sie einen Schirm sowie ein Ridicule mit sich.`,
@@ -93,7 +93,7 @@ for when it comes to money, she never holds back!`
         id: "ueli",
         name: "Ueli",
         type: "SOURCE:MESH",
-        path: "/models/Ueli.glb",
+        path: "/models/ueli.glb",
         translations: {
             de: {
                 description: `Im Mittelalter kannte man die sogenannten Hofnarren. Es ist gut möglich, dass man diese als Vorbild für den Ueli genommen hat. Dessen Kostüm ist in zwei unterschiedlichen Farben gehalten. Er trägt eine Art Kappe mit zwei Stoffhörnern, einen Kragen, dreiviertellange Hosen und eine Jacke. Alles davon ist farblich gegeneinander versetzt. Der Saum der Hosen, der Ärmel und der Jacke ist zackenförmig geschnitten. An den Zacken und an den Stoffhörnern sind kleine Schellen angenäht. So ist der Ueli immer schon von weitem hörbar. Das Auffälligste an ihm sind seine grosse Hakennase und sein breites Lachen. Am Vogel Gryff ist der Ueli ebenfalls im Einsatz. Dort rennt er mit einer Sammelbüchse durch die Strassen. Zudem gibt es auch einen Trommelmarsch namens «dr Ueli». Später ist dazu auch eine Melodie für Pfeifer entstanden`,
@@ -128,7 +128,7 @@ for only then can he play such pranks.`
         id: "dummpeter",
         name: "Dummpeter",
         type: "SOURCE:MESH",
-        path: "/models/Dummpeter.glb",
+        path: "/models/dummpeter.glb",
         translations: {
             de: {
                 description: `Sein Kostüm erinnert an die Zeit des Biedermeiers und des Rokokos. Farblich ist es meist in hellblau oder altrosa gehalten. Die Larve vom Dummpeter hat feine, rosafarbene Bäckchen. Seine Augen blicken meist gen Himmel, er wirkt in seiner ganzen Ausstrahlung verträumt und vor sich hin schwebend. Vorne am Kostüm ist ein Jabot zu erkennen, und besonders sein spezielles Hütchen macht ihn einzigartig. Ein weiteres Merkmal ist seine kleine, gold farbene Trompete. Über den Dummpeter wird oft erzählt, dass er das «r» im Namen der Trompete (Dumpete, statt Drumpete) nicht sagen konnte, und so der Name Dummpeter entstanden sei.`,
@@ -167,7 +167,7 @@ he'd much rather daydream than be here.`
         id: "altfrangg",
         name: "Altfrangg",
         type: "SOURCE:MESH",
-        path: "/models/AltFrangg.glb",
+        path: "/models/alt-frangg.glb",
         translations: {
             de: {
                 description: `Er ist ein Mann von vornehmer Gesinnung, eine Art Edelmann, aus dem Spätbarock. Sein Kostüm besteht aus einem Frack aus Samt. Dazu trägt er schwarze, dreiviertellange Hosen und weisse Kniesocken. Um den Hals hat er sich ein Spitzenjabot gebunden, die Füsse kleiden schwarze Schnallenschuhe mit Absatz. Sein Haupt bedeckt ein Dreizackhut mit einem Federbusch. Oft hat er einen etwas dümmlichen, aber liebenswerten Gesichtsausdruck. Es gibt auch einen gleichnamigen Pfeifer- und Trommelmarsch.`,
@@ -202,7 +202,7 @@ he enjoys these wonderful Fasnacht days.`
         id: "pierrot",
         name: "Pierrot",
         type: "SOURCE:MESH",
-        path: "/models/Pierrot.glb",
+        path: "/models/pierrot.glb",
         translations: {
             de: {
                 description: `Diese Figur sah man bereits im 16. Jahrhundert in Frankreich. Ab 1816 wurde der Pierrot vom bekannten PantomimeKünstler Jean-Gaspard Deburau geprägt. Dieser trug nämlich damals schon das unverkennbare schwarze Käppchen. Zur Basler Variante gehört ausserdem eine Pfauenfeder, die daran befestigt ist. Der Pierrot ist verträumt, liebenswert, manchmal auch melancholisch. Sein Kostüm ist sehr beliebt und wird oft an der Fasnacht gesehen.`,
