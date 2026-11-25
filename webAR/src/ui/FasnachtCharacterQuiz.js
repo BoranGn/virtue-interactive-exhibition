@@ -23,7 +23,8 @@ const quizTexts = {
         correct: "Richtig! Du hast die Fasnachtsfigur erkannt.",
         incorrect: "Leider falsch. Versuche es nochmals!",
         completed: "Quiz abgeschlossen!",
-        restart: "Quiz wiederholen"
+        restart: "Quiz wiederholen",
+        viewerHint: "Schau dir die Larve genauer an …",
     },
     en: {
         title: "Many Masks, Many Stories",
@@ -35,7 +36,9 @@ const quizTexts = {
         correct: "Correct! You recognised the Fasnacht character.",
         incorrect: "Not quite. Try again!",
         completed: "Quiz completed!",
-        restart: "Restart quiz"
+        restart: "Restart quiz",
+        viewerHint: "Take a closer look at the mask …"
+
     }
 };
 
@@ -64,6 +67,7 @@ export class FasnachtCharacterQuiz {
         this.arButton = document.getElementById("open-ar-button");
 
         this.viewerHint = document.getElementById("viewer-hint");
+        this.viewerHintText = document.querySelector(".viewer-hint-text");
 
         this.currentIndex = 0;
         this.currentView = "quiz";
@@ -119,6 +123,7 @@ export class FasnachtCharacterQuiz {
         this.previousButton.textContent = texts.previous;
         this.nextButton.textContent = texts.next;
         this.arButton.textContent = texts.viewAR;
+        this.viewerHintText.textContent = texts.viewerHint;
 
         if (this.currentView === "quiz") {
             this.renderQuestion();
@@ -267,7 +272,7 @@ export class FasnachtCharacterQuiz {
         this.quizTitle.textContent = texts.completed;
         this.quizInstructions.textContent = "";
 
-        this.quizVerse.textContent = "";
+        this.quizVerse.hidden = true;
         this.quizFeedback.textContent = "";
         this.quizAnswers.replaceChildren();
 
@@ -287,6 +292,7 @@ export class FasnachtCharacterQuiz {
 
     restartQuiz() {
         this.currentIndex = 0;
+        this.currentView = "quiz";
         this.solvedQuestions.clear();
 
         this.questions = [...questions].sort(() => Math.random() - 0.5);

@@ -29,7 +29,6 @@ body {
     overflow-x: hidden;
 }
 
-/* General elements */
 
 button,
 input,
@@ -68,7 +67,6 @@ h2 {
     color: #263b52;
 }
 
-/* Header */
 
 .app-header {
     display: flex;
@@ -115,7 +113,6 @@ h2 {
     font-size: 12px;
 }
 
-/* Language selection */
 
 #language-select {
     max-width: 140px;
@@ -132,7 +129,6 @@ h2 {
     cursor: pointer;
 }
 
-/* Welcome page */
 
 #welcome-page {
     text-align: center;
@@ -183,7 +179,6 @@ h2 {
     }
 }
 
-/* General cards */
 
 .exhibit-card {
     border: 1px solid #d6dce3;
@@ -194,7 +189,6 @@ h2 {
     box-shadow: 0 4px 20px rgba(30, 47, 66, 0.04);
 }
 
-/* Larven quiz */
 
 #quiz-title {
     font-size: clamp(25px, 3vw, 34px);
@@ -224,7 +218,6 @@ h2 {
     border-radius: 8px;
 }
 
-/* Quiz answers */
 
 .quiz-answers {
     display: grid;
@@ -270,7 +263,6 @@ h2 {
     font-weight: 600;
 }
 
-/* Media viewers */
 
 .viewer-container {
     position: relative;
@@ -297,7 +289,6 @@ h2 {
     display: block;
 }
 
-/* Object navigation */
 
 .object-navigation {
     display: flex;
@@ -320,7 +311,6 @@ h2 {
     color: #596575;
 }
 
-/* Archive search */
 
 .page-intro {
     margin-bottom: 20px;
@@ -363,7 +353,6 @@ h2 {
     margin-top: 16px;
 }
 
-/* Audio and video */
 
 #viewer:has(audio),
 #viewer:has(video),
@@ -385,7 +374,6 @@ h2 {
     max-height: 100%;
 }
 
-/* Primary buttons */
 
 #next-button,
 #next-button-explore,
@@ -417,7 +405,6 @@ h2 {
     cursor: not-allowed;
 }
 
-/* AR model elements */
 
 .ar-model {
     position: absolute;
@@ -426,7 +413,6 @@ h2 {
     left: -9999px;
 }
 
-/* Fullscreen viewer */
 
 .fullscreen-viewer {
     position: fixed;
@@ -449,7 +435,6 @@ h2 {
     overflow: hidden;
 }
 
-/* Fullscreen title */
 
 .viewer-toolbar {
     display: flex;
@@ -480,7 +465,6 @@ h2 {
     white-space: nowrap;
 }
 
-/* Fullscreen 3D / image area */
 
 .fullscreen-viewer .viewer-container {
     flex: 1;
@@ -500,7 +484,6 @@ h2 {
     object-fit: contain;
 }
 
-/* Mask description */
 
 .mask-info {
     white-space: pre-line;
@@ -521,11 +504,10 @@ h2 {
     border: 1px solid #3a4b5d;
     border-radius: 10px;
 
-    font-size: 15px;
-    line-height: 1.7;
+    font-size: 19px;
+    line-height: 1.9;
 }
 
-/* Fullscreen navigation */
 
 .fullscreen-viewer .object-navigation {
     flex-shrink: 0;
@@ -563,7 +545,6 @@ h2 {
     color: #cbd5df;
 }
 
-/* Interactive hint */
 
 .viewer-hint {
     position: absolute;
@@ -602,7 +583,7 @@ h2 {
     border: 1px solid rgba(255, 255, 255, 0.18);
 
     color: #f3f5f7;
-    font-size: 13px;
+    font-size: 18px;
     font-weight: 500;
 }
 
@@ -624,19 +605,16 @@ h2 {
     }
 }
 
-/* Prevent background scrolling */
 
 body:has(#exhibition-viewer:not([hidden])) {
     overflow: hidden;
 }
 
-/* Visibility */
 
 [hidden] {
     display: none !important;
 }
 
-/* Small screens */
 
 @media (max-width: 480px) {
 
@@ -685,8 +663,6 @@ body:has(#exhibition-viewer:not([hidden])) {
         font-size: 14px;
     }
 }
-
-/* Desktop */
 
 @media (min-width: 900px) {
 
