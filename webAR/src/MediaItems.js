@@ -205,7 +205,7 @@ he enjoys these wonderful Fasnacht days.`
         path: "/models/pierrot.glb",
         translations: {
             de: {
-                description: `Diese Figur sah man bereits im 16. Jahrhundert in Frankreich. Ab 1816 wurde der Pierrot vom bekannten PantomimeKünstler Jean-Gaspard Deburau geprägt. Dieser trug nämlich damals schon das unverkennbare schwarze Käppchen. Zur Basler Variante gehört ausserdem eine Pfauenfeder, die daran befestigt ist. Der Pierrot ist verträumt, liebenswert, manchmal auch melancholisch. Sein Kostüm ist sehr beliebt und wird oft an der Fasnacht gesehen.`,
+                description: `Diese Figur sah man bereits im 16. Jahrhundert in Frankreich. Ab 1816 wurde der Pierrot vom bekannten Pantomimekünstler Jean-Gaspard Deburau geprägt. Dieser trug nämlich damals schon das unverkennbare schwarze Käppchen. Zur Basler Variante gehört ausserdem eine Pfauenfeder, die daran befestigt ist. Der Pierrot ist verträumt, liebenswert, manchmal auch melancholisch. Sein Kostüm ist sehr beliebt und wird oft an der Fasnacht gesehen.`,
 
                 verse: `Verdräumt pfyfft dr ... vor sich hi.
 Är luegt e bizzeli schwermietig dri.
