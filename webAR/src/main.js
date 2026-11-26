@@ -5,7 +5,8 @@ import {setUpSearch} from "./vitrvr/VitrivrSearch";
 import {ARViewer} from "./viewers/ARViewer";
 
 
-import "@google/model-viewer";
+import '@google/model-viewer';
+
 import * as THREE from "three";
 
 THREE.Cache.enabled = true;
@@ -22,6 +23,19 @@ const station = params.get("station");
 
 console.log("Hello");
 
+console.log("Secure Context:", window.isSecureContext);
+
+if (navigator.xr) {
+    navigator.xr.isSessionSupported("immersive-ar")
+        .then(supported => {
+            console.log("WebXR AR supported:", supported);
+        })
+        .catch(error => {
+            console.error("WebXR error:", error);
+        });
+} else {
+    console.log("WebXR is not available");
+}
 
 welcomePage.hidden = true;
 exhibitionPage.hidden = true;

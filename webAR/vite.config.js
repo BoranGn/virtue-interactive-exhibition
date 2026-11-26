@@ -1,7 +1,11 @@
 import {defineConfig} from "vite";
 
 export default defineConfig({
+
     server: {
+        allowedHosts: [
+            'adware-hiring-architectural-aaa.trycloudflare.com'
+        ],
         proxy: {
             "/api": {
                 target: "http://10.34.64.208:7070",
@@ -14,4 +18,5 @@ export default defineConfig({
             }
         }
     }
+
 });

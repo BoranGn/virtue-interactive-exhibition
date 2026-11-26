@@ -12,7 +12,7 @@ export const questions = [
         id: "waggis",
         name: "Waggis",
         type: "SOURCE:MESH",
-        path: "/models/uelibeforeblender.glb",
+        path: "/models/waggis.glb",
         translations: {
             de: {
 

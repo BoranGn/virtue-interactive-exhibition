@@ -11,7 +11,6 @@
 <body>
 
 <header class="app-header">
-    <div class="header-brand">
         <div class="branding-group">
 
             <img
@@ -24,14 +23,11 @@
         <h1>VirtuLearn</h1>
         <p>Discover Basler Fasnacht</p>
     </div>
-
         </div>
 
-    </div>
 
 
-
-        <select id="language-select" aria-label="Sprache">
+    <select id="language-select" aria-label="Sprache">
         <option value="de">Deutsch</option>
         <option value="en">English</option>
     </select>
@@ -189,9 +185,9 @@
             </button>
         </div>
         <article id="explore-results" class="exhibit-card search-results" hidden>
-            <button id="open-ar-button-explore" type="button">
-                In AR ansehen
-            </button>
+
+
+            <span id="explore-object-counter"> </span>
 
             <div class="viewer-container">
                 <div id="explore-viewer"></div>
@@ -201,8 +197,9 @@
                 <button id="previous-button-explore" type="button">
                     ← Zurück
                 </button>
-
-                <span id="explore-object-counter"> </span>
+                <button id="open-ar-button-explore" type="button">
+                    In AR ansehen
+                </button>
 
                 <button id="next-button-explore" type="button">
                     Weiter →
@@ -217,18 +214,24 @@
         id="ar-model"
         class="ar-model"
         ar
-        ar-modes="webxr scene-viewer quick-look"
-        ja alt="3D-Modell in Augmented Reality">
+        ar-modes="scene-viewer quick-look webxr"
+        ar-scale="fixed"
+        ar-placement="floor"
+        alt="3D-Modell in Augmented Reality">
 </model-viewer>
 
 <model-viewer
         id="ar-model-explore"
         class="ar-model"
         ar
-        ar-modes="webxr scene-viewer quick-look"
+        ar-modes="scene-viewer quick-look webxr"
+        ar-scale="fixed"
+        ar-placement="floor"
         alt="3D-Modell aus der Sammlung in Augmented Reality">
 </model-viewer>
 
-    <script type="module" src="./src/main.js"></script>
+<script src="/ogv/ogv.js"></script>
+
+<script type="module" src="./src/main.js"></script>
 </body>
 </html>

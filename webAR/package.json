@@ -6,9 +6,11 @@
   },
   "dependencies": {
     "@google/model-viewer": "^4.4.0",
+    "ogv": "^1.9.0",
     "three": "^0.183.2"
   },
   "devDependencies": {
+    "@types/webxr": "^0.5.24",
     "vite": "^8.3.4"
   }
 }

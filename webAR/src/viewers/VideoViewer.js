@@ -1,55 +1,50 @@
 export function showVideo(viewer, path) {
 
-    const playButton = document.getElementById("ogv-play-button");
-
     if (!/\.ogv(?:[?#]|$)/i.test(path)) {
         const video = document.createElement("video");
 
-    video.src = path
-    video.playsInline = true;
-    video.controls = true;
+        video.src = path
+        video.playsInline = true;
+        video.controls = true;
 
-    video.style.width = "100%";
-    video.style.height = "100%";
-    video.style.objectFit = "contain";
+        video.style.width = "100%";
+        video.style.height = "100%";
+        video.style.objectFit = "contain";
 
 
-    viewer.replaceChildren(video);
-    return;
-}
+        viewer.replaceChildren(video);
+        return;
+    }
     window.OGVLoader.base = "/ogv";
 
     const player = new window.OGVPlayer();
     player.src = path;
-    player.className = "ogv-player";
     player.style.width = "100%";
 
-    viewer.replaceChildren(player);
+    const playButton = document.createElement("button");
+    playButton.type = "button";
+    playButton.textContent = "Abspielen";
 
-    if (!playButton) return;
-
-    playButton.hidden = false;
-
-    function togglePlayback() {
+    playButton.addEventListener("click", () => {
         if (player.paused) {
-            Promise.resolve(player.play()).catch(console.error);
+            player.play();
         } else {
             player.pause();
         }
-    }
-
-    playButton.onclick = togglePlayback;
-    player.addEventListener("click", togglePlayback);
+    });
 
     player.addEventListener("play", () => {
-        playButton.hidden = true;
+        playButton.textContent = "Pause";
+        container.classList.add("started");
     });
 
     player.addEventListener("pause", () => {
-        playButton.hidden = false;
+        playButton.textContent = "Abspielen";
     });
 
-    player.addEventListener("ended", () => {
-        playButton.hidden = false;
-    });
+    const container = document.createElement("div");
+    container.className = "ogv-video-container";
+
+    container.append(player, playButton);
+    viewer.replaceChildren(container);
 }
