@@ -536,6 +536,10 @@ h2 {
 .object-info {
     white-space: pre-line;
     line-height: 1.7;
+
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .fullscreen-viewer .viewer-container .object-info {

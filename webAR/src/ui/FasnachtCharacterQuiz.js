@@ -10,7 +10,7 @@
  */
 
 
-import { questions } from "../MediaItems.js";
+import { questions } from "../data/MediaItems.js";
 
 const quizTexts = {
     de: {
@@ -92,7 +92,7 @@ export class FasnachtCharacterQuiz {
             this.nextQuestion();
         });
 
-        this.objectDescription.addEventListener("click", () => {
+        this.objectDescription.addEventListener("pointerup", () => {
             this.showDescription();
         });
 

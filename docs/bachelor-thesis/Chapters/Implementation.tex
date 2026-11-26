@@ -6,3 +6,23 @@
 - QuickView für Iphone
 - herausgefunden AR Quickview geht besser auf einem tisch mit textur.
 - the mediaserver can be reached http://10.34.64.208:9090 and the request server at http://10.34.64.208:7070 \cite{noauthor_bcs-vr-museumsrcinfrast ructurevitrivrvitrivrsettingscs_nodate}
+
+\subsection*{Cross-Platform AR Compatibility}
+During the implementation and testing of the AR functionality, differences between iOS and Android devices were observed. While Apple Quick Look provided a stable AR experience, Google Scene Viewer repeatedly closed immediately after activation on the tested Android device.
+
+Reverting the Google application to an earlier version allowed Scene Viewer to launch, but the 3D model was still not displayed successfully. The same behaviour was observed when testing with the official model-viewer demonstration model, suggesting that the issue was not specific to the exhibition's 3D assets.
+
+WebXR was successfully launched over an HTTPS connection. However, unstable spatial tracking affected the positioning of virtual objects in the physical environment.
+
+Since the exhibition is intended for public use, requiring visitors to downgrade system applications is not considered a viable solution. These observations highlight the challenges of providing a consistent browser-based AR experience across different mobile platforms.
+
+
+\subsection*{Image-Based Augmented Reality Using MindAR}
+During testing, the initial AR implementation revealed compatibility and tracking issues on the tested Android device. Google Scene Viewer repeatedly terminated after activation, while WebXR exhibited unstable spatial tracking. Although Apple Quick Look provided a satisfactory AR experience on iOS, an alternative approach was required for Android.
+
+MindAR was selected as an alternative due to its browser-based image-tracking capabilities and its direct integration with Three.js. Unlike the previously tested approaches, MindAR does not rely on Google Scene Viewer or ARCore. Instead, it uses predefined image targets to determine the position and orientation of virtual objects within the camera view.
+
+The integration with Three.js allows existing components, such as the GLB model-loading functionality, to be reused without introducing an entirely new rendering framework.
+
+Furthermore, image-based tracking is particularly suitable for the physical exhibition environment, as printed reference images can be incorporated into the individual exhibition stations. This approach is intended to provide an alternative AR experience without requiring visitors to install additional applications or modify their system software.
+

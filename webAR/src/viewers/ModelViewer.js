@@ -50,7 +50,6 @@ export class ModelViewer{
 
             pointerStart = null;
 
-            // Ignore dragging or rotating the model
             if (distance > 5) return;
 
             this.checkModelClick(event);

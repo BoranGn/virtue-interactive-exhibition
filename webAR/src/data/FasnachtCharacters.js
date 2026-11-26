@@ -1,18 +1,9 @@
-/**
- * Defines the media items used in the interactive exhibition.
- *
- * Responsibilities:
- * - Store Fasnacht masks and instruments.
- * - Provide paths to 3D models and audio recordings.
- * - Store descriptions and verses in multiple languages.
- */
-
-export const questions = [
+const fasnachtCharacters = [
     {
         id: "waggis",
         name: "Waggis",
         type: "SOURCE:MESH",
-        path: "/models/waggis.glb",
+        path: "/models/ueli.glb",
         translations: {
             de: {
 
@@ -57,7 +48,7 @@ Try to catch them! It's not hard, I swear.`
         id: "alti-dante",
         name: "Alti Dante",
         type: "SOURCE:MESH",
-        path: "/models/alti-dante.glb",
+        path: "/models/ueli.glb",
         translations: {
             de: {
                 description: `Diese Fasnachtsfigur entstand Ende des 19. Jahrhunderts und ist bis heute sehr beliebt. Die alti Dante ist eine durchaus humoristisch gemeinte Imitation der gehobenen Basler Gesellschaft. Ihr Kostüm ist zweiteilig und besteht aus einem Rock und einer Jacke. Ihre Larve hat nicht selten eine spitze Nase, auf der eine Brille sitzt. Oft hat sie einen Kussmund und wirkt manchmal ein bisschen hochnäsig. Als Kopfbedeckung dient ihr immer ein reich mit Blumen verzierter Hut. Als Accessoires führt sie einen Schirm sowie ein Ridicule mit sich.`,
@@ -110,7 +101,7 @@ nur denn darf är so Spässli mache.`
             en: {
                 description: `In the Middle Ages, there were so-called court jesters. It is quite possible that they served as the inspiration for the Ueli. His costume features two different colours. He wears a type of cap with two fabric horns, a collar, three-quarter-length trousers and a jacket. All of these garments have contrasting colours. The hems of the trousers, sleeves and jacket are cut into a zigzag pattern. Small bells are sewn onto the points and the fabric horns. This means that the Ueli can always be heard from far away.
 His most striking features are his large hooked nose and broad smile. The Ueli also takes part in the Vogel Gryff festival, where he runs through the streets carrying a collection box. There is also a drum march called "dr Ueli". A melody for piccolo players was later composed to accompany it.`
-    ,
+                ,
                 verse: `You can hear him coming from afar,
 the ... with bells upon his cap.
 A jester, just like in the books,
@@ -128,7 +119,7 @@ for only then can he play such pranks.`
         id: "dummpeter",
         name: "Dummpeter",
         type: "SOURCE:MESH",
-        path: "/models/dummpeter.glb",
+        path: "/models/ueli.glb",
         translations: {
             de: {
                 description: `Sein Kostüm erinnert an die Zeit des Biedermeiers und des Rokokos. Farblich ist es meist in hellblau oder altrosa gehalten. Die Larve vom Dummpeter hat feine, rosafarbene Bäckchen. Seine Augen blicken meist gen Himmel, er wirkt in seiner ganzen Ausstrahlung verträumt und vor sich hin schwebend. Vorne am Kostüm ist ein Jabot zu erkennen, und besonders sein spezielles Hütchen macht ihn einzigartig. Ein weiteres Merkmal ist seine kleine, gold farbene Trompete. Über den Dummpeter wird oft erzählt, dass er das «r» im Namen der Trompete (Dumpete, statt Drumpete) nicht sagen konnte, und so der Name Dummpeter entstanden sei.`,
@@ -167,7 +158,7 @@ he'd much rather daydream than be here.`
         id: "altfrangg",
         name: "Altfrangg",
         type: "SOURCE:MESH",
-        path: "/models/alt-frangg.glb",
+        path: "/models/ueli.glb",
         translations: {
             de: {
                 description: `Er ist ein Mann von vornehmer Gesinnung, eine Art Edelmann, aus dem Spätbarock. Sein Kostüm besteht aus einem Frack aus Samt. Dazu trägt er schwarze, dreiviertellange Hosen und weisse Kniesocken. Um den Hals hat er sich ein Spitzenjabot gebunden, die Füsse kleiden schwarze Schnallenschuhe mit Absatz. Sein Haupt bedeckt ein Dreizackhut mit einem Federbusch. Oft hat er einen etwas dümmlichen, aber liebenswerten Gesichtsausdruck. Es gibt auch einen gleichnamigen Pfeifer- und Trommelmarsch.`,
@@ -202,7 +193,7 @@ he enjoys these wonderful Fasnacht days.`
         id: "pierrot",
         name: "Pierrot",
         type: "SOURCE:MESH",
-        path: "/models/pierrot.glb",
+        path: "/models/ueli.glb",
         translations: {
             de: {
                 description: `Diese Figur sah man bereits im 16. Jahrhundert in Frankreich. Ab 1816 wurde der Pierrot vom bekannten Pantomimekünstler Jean-Gaspard Deburau geprägt. Dieser trug nämlich damals schon das unverkennbare schwarze Käppchen. Zur Basler Variante gehört ausserdem eine Pfauenfeder, die daran befestigt ist. Der Pierrot ist verträumt, liebenswert, manchmal auch melancholisch. Sein Kostüm ist sehr beliebt und wird oft an der Fasnacht gesehen.`,
@@ -233,51 +224,6 @@ And his beautiful ruffled collar
 is something the ... always wears.
 So he enjoys Fasnacht in his own way,
 with fine notes, so beautiful and gentle.`
-            }
-        }
-    }
-];
-
-
-export const fasnachtInstruments = [
-    {
-        id: "basel-drum",
-        type: "SOURCE:MESH",
-        path: "/models/basel-drum.glb",
-        audio:{
-            type: "SOURCE:AUDIO",
-            path: "/audios/drumm-solo.mp3"
-
-    },
-        translations: {
-            de: {
-                name:"Basler Trommel",
-                description: "Die Basler Trommel ist ein traditionelles Schlaginstrument der Basler Fasnacht. Zusammen mit dem Piccolo prägt sie die Musik der Cliquen."
-            },
-            en: {
-                name: "Basel Drum",
-                description: "The Basel drum is a traditional percussion instrument of Basel Fasnacht. Together with the piccolo, it is central to the music performed by Cliques."
-            }
-        }
-    },
-    {
-        id: "piccolo",
-        type: "SOURCE:MESH",
-        path: "/models/piccolo.glb",
-
-        audio:{
-            type: "SOURCE:AUDIO",
-            path: "/audios/piccolo-solo.m4a",
-
-        },
-        translations: {
-            de: {
-                name: "Piccolo",
-                description: "Das Piccolo ist ein kleines Blasinstrument mit einem hohen, durchdringenden Klang. Es wird an der Basler Fasnacht zusammen mit der Basler Trommel gespielt."
-            },
-            en: {
-                name: "Piccolo",
-                description: "The piccolo is a small wind instrument with a high-pitched, distinctive sound. During Basel Fasnacht, it is played together with the Basel drum."
             }
         }
     }

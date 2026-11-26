@@ -4,7 +4,7 @@ export default defineConfig({
 
     server: {
         allowedHosts: [
-            'adware-hiring-architectural-aaa.trycloudflare.com'
+            'wilson-moisture-essentials-transit.trycloudflare.com'
         ],
         proxy: {
             "/api": {

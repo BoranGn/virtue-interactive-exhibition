@@ -22,3 +22,4 @@ export class ARViewer {
         this.arModel.removeAttribute("src");
     }
 }
+
