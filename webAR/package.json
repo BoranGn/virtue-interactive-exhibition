@@ -6,6 +6,7 @@
   },
   "dependencies": {
     "@google/model-viewer": "^4.4.0",
+    "mind-ar": "^1.2.5",
     "ogv": "^1.9.0",
     "three": "^0.183.2"
   },

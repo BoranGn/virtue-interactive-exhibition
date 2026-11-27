@@ -10,7 +10,7 @@
  */
 
 
-import {fasnachtInstruments} from "../data/MediaItems.js";
+import {fasnachtInstruments} from "../../data/FasnachtInstruments.js";
 
 const musicTexts = {
     de: {

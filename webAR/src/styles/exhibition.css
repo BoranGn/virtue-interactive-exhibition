@@ -1,0 +1,135 @@
+/* Exhibition stations */
+#quiz-title,
+#music-title {
+    font-size: clamp(25px, 3vw, 34px);
+    margin: 10px 0 20px;
+}
+
+#quiz-instructions,
+#music-instructions {
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+}
+
+/* Mask quiz */
+.quiz-verse {
+    white-space: pre-line;
+
+    font-family: var(--font-heading);
+    font-size: clamp(18px, 2vw, 22px);
+    font-weight: 400;
+    line-height: 1.9;
+
+    color: #29394a;
+
+    padding: 20px 24px;
+    margin: 24px 0;
+
+    background: rgba(244, 246, 248, 0.85);
+    border-left: 3px solid #8395a8;
+    border-radius: 8px;
+}
+
+.quiz-answers {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin: 22px 0;
+}
+
+.quiz-answers button,
+.music-card button {
+    min-height: 54px;
+    padding: 12px;
+
+    background: #e9edf2;
+    color: var(--color-heading);
+
+    border: 1px solid #d1d9e2;
+    border-radius: 11px;
+
+    font-size: 16px;
+    font-weight: 600;
+}
+
+@media (hover: hover) {
+    .quiz-answers button:not(:disabled):hover,
+    .music-card button:not(:disabled):hover {
+        background: #d8e1eb;
+        border-color: #aab9c8;
+        transform: translateY(-2px);
+    }
+}
+
+.quiz-answers button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.quiz-feedback.correct {
+    color: var(--color-success);
+    font-weight: 600;
+}
+
+.quiz-feedback.incorrect {
+    color: var(--color-error);
+    font-weight: 600;
+}
+
+/* Music station */
+.music-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+}
+
+.music-card {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    padding: 18px;
+    background: #f4f6f8;
+    border: 1px solid #d6dce3;
+    border-radius: 12px;
+}
+
+.music-card h3 {
+    margin: 0;
+    color: var(--color-heading);
+}
+
+.music-card p {
+    flex: 1;
+    margin: 0;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+}
+
+.music-card button {
+    width: 100%;
+}
+
+@media (max-width: 480px) {
+
+    .quiz-verse {
+        padding: 16px;
+        line-height: 1.8;
+    }
+
+    .quiz-answers {
+        gap: 8px;
+    }
+
+    .quiz-answers button,
+    .music-card button {
+        font-size: 14px;
+    }
+}
+
+@media (min-width: 900px) {
+
+    .music-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}

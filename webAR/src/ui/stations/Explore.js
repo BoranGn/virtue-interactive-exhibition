@@ -1,4 +1,4 @@
-import {MediaViewer} from "../viewers/MediaViewer";
+import {MediaViewer} from "../../viewers/MediaViewer";
 
 export function setUpExplore(exploreMediaViewer,languageSelect, mediaItems) {
     const nextButton = document.getElementById("next-button-explore");

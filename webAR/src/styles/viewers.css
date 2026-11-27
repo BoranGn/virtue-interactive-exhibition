@@ -1,0 +1,334 @@
+/* Shared viewer styles */
+.viewer-container {
+    position: relative;
+}
+
+#exhibition-media-container,
+#explore-media-container {
+    width: 100%;
+    overflow: hidden;
+    touch-action: none;
+}
+
+#exhibition-media-container {
+    height: 100%;
+}
+
+#exhibition-media-container canvas,
+#explore-media-container canvas {
+    display: block;
+}
+
+.object-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.object-navigation button:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+    filter: grayscale(100%);
+}
+
+#exhibition-object-counter,
+#explore-object-counter {
+    font-size: 14px;
+    white-space: nowrap;
+    color: var(--color-text-secondary);
+}
+
+/* Media playback */
+#exhibition-media-container:has(audio),
+#exhibition-media-container:has(video),
+#explore-media-container:has(audio),
+#explore-media-container:has(video) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#exhibition-media-container audio,
+#explore-media-container audio {
+    width: min(90%, 500px);
+}
+
+#exhibition-media-container video,
+#explore-media-container video {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/* Exhibition viewer */
+.fullscreen-viewer {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    height: 100dvh;
+
+    padding-top: max(12px, env(safe-area-inset-top));
+    padding-right: max(12px, env(safe-area-inset-right));
+    padding-bottom: max(12px, env(safe-area-inset-bottom));
+    padding-left: max(12px, env(safe-area-inset-left));
+
+    background: var(--color-heading);
+    color: #f3f5f7;
+    overflow: hidden;
+}
+
+.viewer-toolbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 12px;
+}
+
+.viewer-title {
+    font-family: var(--font-heading);
+    font-size: 26px;
+    font-weight: 600;
+    color: white;
+
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 8px 0;
+
+    text-align: center;
+}
+
+.fullscreen-viewer .viewer-container {
+    flex: 1;
+    min-height: 0;
+    width: 100%;
+
+    background: var(--color-viewer-background);
+    border: 1px solid #344252;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+#exhibition-viewer #exhibition-media-container img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.object-info {
+    white-space: pre-line;
+    line-height: 1.7;
+
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.fullscreen-viewer .viewer-container .object-info {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+
+    width: 85%;
+    max-height: 70%;
+    overflow-y: auto;
+
+    margin: 0;
+    padding: 16px;
+
+    background: rgba(24, 45, 70, 0.50);
+    color: white;
+
+    border: 1px solid rgba(180, 205, 230, 0.25);
+    border-radius: 12px;
+
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+
+    font-size: 20px;
+    line-height: 1.5;
+    text-align: center;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.9);
+
+    cursor: pointer;
+    isolation: isolate;
+}
+
+.fullscreen-viewer .object-navigation {
+    flex-shrink: 0;
+    margin-top: 0;
+    padding-top: 12px;
+    border-top: 1px solid #3a4858;
+}
+
+.viewer-actions {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    align-items: center;
+}
+
+.viewer-actions button {
+    min-width: 0;
+    padding: 10px 6px;
+    font-size: 14px;
+}
+
+.viewer-actions #exhibition-object-counter {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    text-align: center;
+    color: #cbd5df;
+}
+
+/* Viewer hint */
+.viewer-hint {
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    pointer-events: none;
+}
+
+.viewer-hint-glow {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+
+    background: radial-gradient(
+            circle,
+            rgba(206, 220, 235, 0.38) 0%,
+            rgba(206, 220, 235, 0.16) 45%,
+            rgba(206, 220, 235, 0) 75%
+    );
+
+    animation: viewerPulse 1.8s ease-in-out infinite;
+}
+
+.viewer-hint-text {
+    position: absolute;
+    bottom: 18px;
+
+    padding: 8px 14px;
+    border-radius: 999px;
+
+    background: rgba(24, 35, 47, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+
+    color: #f3f5f7;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+/* OGV video player */
+.ogv-video-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.ogv-video-container button {
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    z-index: 2;
+
+    padding: 12px 24px;
+    background: var(--color-primary);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.ogv-video-container::before {
+    content: "Video";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #6d6d6d;
+    font-size: 50px;
+    pointer-events: none;
+}
+
+.ogv-video-container.started::before {
+    display: none;
+}
+
+@media (hover: hover) {
+    .ogv-play-button:hover {
+        background: rgba(38, 66, 96, 0.95);
+    }
+}
+
+/* Animations */
+@keyframes viewerPulse {
+    0%, 100% {
+        transform: scale(0.9);
+        opacity: 0.5;
+    }
+
+    50% {
+        transform: scale(1.15);
+        opacity: 1;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .viewer-hint-glow {
+        animation: none;
+    }
+}
+
+body:has(#exhibition-viewer:not([hidden])) {
+    overflow: hidden;
+}
+
+@media (min-width: 900px) {
+
+    .viewer-actions {
+        grid-template-columns: auto 1fr auto auto;
+    }
+
+    .viewer-actions #exhibition-previous-button {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .viewer-actions #exhibition-object-counter {
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    .viewer-actions #exhibition-open-ar-button {
+        grid-column: 3;
+        grid-row: 1;
+    }
+
+    .viewer-actions #exhibition-next-button {
+        grid-column: 4;
+        grid-row: 1;
+    }
+}

@@ -5,12 +5,12 @@ export const fasnachtInstruments = [
         path: "/models/basel-drum.glb",
         audio:{
             type: "SOURCE:AUDIO",
-            path: "/audios/drumm-solo.mp3"
+            path: "/audios/drum-solo.mp3"
 
         },
         translations: {
             de: {
-                name:"Basler Trommel",
+                name: "Basler Trommel",
                 description: "Die Basler Trommel ist ein traditionelles Schlaginstrument der Basler Fasnacht. Zusammen mit dem Piccolo prägt sie die Musik der Cliquen."
             },
             en: {

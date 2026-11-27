@@ -10,7 +10,7 @@
  */
 
 
-import { questions } from "../data/MediaItems.js";
+import { fasnachtCharacters } from "../../data/FasnachtCharacters.js";
 
 const quizTexts = {
     de: {
@@ -73,8 +73,8 @@ export class FasnachtCharacterQuiz {
         this.currentView = "quiz";
         this.solvedQuestions = new Set();
 
-        this.answerOptions = [...questions].sort(() => Math.random() - 0.5);
-        this.questions = [...questions].sort(() => Math.random() - 0.5);
+        this.answerOptions = [...fasnachtCharacters].sort(() => Math.random() - 0.5);
+        this.questions = [...fasnachtCharacters].sort(() => Math.random() - 0.5);
 
         this.languageSelect.addEventListener("change", () => {
             this.updateLanguage();
@@ -186,7 +186,7 @@ export class FasnachtCharacterQuiz {
         }
         this.quizVerse.hidden = false;
 
-        this.quizCounter.textContent = (this.currentIndex + 1) + "/" +  questions.length;
+        this.quizCounter.textContent = (this.currentIndex + 1) + "/" +  this.questions.length;
 
         this.quizPreviousButton.disabled =
             this.currentIndex === 0;
@@ -300,8 +300,8 @@ export class FasnachtCharacterQuiz {
         this.currentView = "quiz";
         this.solvedQuestions.clear();
 
-        this.questions = [...questions].sort(() => Math.random() - 0.5);
-        this.answerOptions = [...questions].sort(() => Math.random() - 0.5);
+        this.questions = [...fasnachtCharacters].sort(() => Math.random() - 0.5);
+        this.answerOptions = [...fasnachtCharacters].sort(() => Math.random() - 0.5);
 
         this.quizPreviousButton.hidden = false;
 

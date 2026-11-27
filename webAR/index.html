@@ -5,70 +5,63 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>VirtuLearn - Basler Fasnacht</title>
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="src/styles/style.css">
 </head>
 
 <body>
 
+<!-- Application header -->
 <header class="app-header">
-        <div class="branding-group">
 
-            <img
-                    src="/assets/waggis.png"
-                    alt="Waggislarve"
-                    class="header-waggis"
-            >
+    <div class="branding-group">
+        <img
+                src="/assets/waggis.png"
+                alt="Waggislarve"
+                class="header-waggis"
+        >
 
-    <div class="branding">
-        <h1>VirtuLearn</h1>
-        <p>Discover Basler Fasnacht</p>
-    </div>
+        <div class="branding">
+            <h1>VirtuLearn</h1>
+            <p>Discover Basler Fasnacht</p>
         </div>
+    </div>
 
-
-
-    <select id="language-select" aria-label="Sprache">
+    <select id="language-select" aria-label="language">
         <option value="de">Deutsch</option>
         <option value="en">English</option>
     </select>
 
-            <img
-                    src="/assets/unibas-logo.png"
-                    alt="Universität Basel"
-                    class="unibas-logo"
-            >
+    <img
+            src="/assets/unibas-logo.png"
+            alt="Universität Basel"
+            class="unibas-logo"
+    >
+
 </header>
 
 <main class="app-content">
 
+    <!-- Welcome page -->
     <section id="welcome-page">
 
-        <h2>Willkommen bei VirtuLearn!</h2>
+        <h2 id="welcome-title"></h2>
 
-        <p>
-            Entdecke die Basler Fasnacht auf interaktive Weise.
-            Wähle eine Station aus.
-        </p>
+        <p id="welcome-description"></p>
 
-        <div class="station-navigation">
-            <a href="?station=larven">
-                Vieli Larve, vieli Gschichte
-            </a>
+        <nav class="station-navigation">
+            <a id="masks-link" href="?station=masks"></a>
 
-            <a href="?station=musik">
-                D'Kläng vo de Fasnacht
-            </a>
+            <a id="music-link" href="?station=music"></a>
 
-            <a href="?station=archiv">
-                Drey scheenste Dääg
-            </a>
-        </div>
-
+            <a id="archive-link" href="?station=archive"></a>
+        </nav>
     </section>
 
+    <!-- Exhibition page -->
     <section id="exhibition-page" hidden>
 
-        <article id="larven-quiz" class ="exhibit-card" hidden>
+        <!-- Mask quiz -->
+        <article id="mask-quiz" class="exhibit-card" hidden>
 
             <h2 id="quiz-title"></h2>
 
@@ -76,8 +69,7 @@
 
             <p id="quiz-verse" class="quiz-verse"></p>
 
-            <div id="quiz-answers" class="quiz-answers">
-            </div>
+            <div id="quiz-answers" class="quiz-answers"></div>
 
             <p
                     id="quiz-feedback"
@@ -85,13 +77,18 @@
                     aria-live="polite">
             </p>
             <div class="object-navigation">
-                <button id="quiz-previous-button" type="button" disabled>
+
+                <button id="quiz-previous-button"
+                        type="button"
+                        disabled>
                 </button>
 
                 <span id="quiz-counter"></span>
             </div>
 
         </article>
+
+        <!-- Music station -->
         <article id="music-station" class="exhibit-card" hidden>
 
             <h2 id="music-title"></h2>
@@ -101,121 +98,164 @@
             <div id="music-instruments" class="music-grid">
 
                 <div class="music-card">
+
                     <h3 id="piccolo-title"></h3>
+
                     <p id="piccolo-description"></p>
 
-                    <button id="piccolo-listen-button" type="button"></button>
+                    <button
+                            id="piccolo-listen-button"
+                            type="button">
 
-                    <button id="piccolo-view-button" type="button"></button>
+                    </button>
+
+                    <button id="piccolo-view-button"
+                            type="button">
+
+                    </button>
+
                 </div>
 
                 <div class="music-card">
+
                     <h3 id="drum-title"></h3>
+
                     <p id="drum-description"></p>
 
-                    <button id="drum-listen-button" type="button"></button>
+                    <button
+                            id="drum-listen-button"
+                            type="button">
+                    </button>
 
-                    <button id="drum-view-button" type="button"></button>
+                    <button
+                            id="drum-view-button"
+                            type="button">
+                    </button>
+
                 </div>
 
             </div>
 
         </article>
 
-        <article id="exhibition-viewer" class="fullscreen-viewer" hidden>
+        <!-- Fullscreen viewer for stations 1 and 2 -->
+        <article
+                id="exhibition-viewer"
+                class="fullscreen-viewer"
+                hidden>
 
             <div class="viewer-toolbar">
-                <span id="object-title" class="viewer-title"></span>
+                <span
+                        id="exhibition-object-title"
+                        class="viewer-title">
+
+                </span>
+
             </div>
 
 
             <div class="viewer-container">
-                <div id="viewer"></div>
+
+                <div id="exhibition-media-container"></div>
 
 
-                <div id="viewer-hint" class="viewer-hint">
+                <div
+                        id="viewer-hint"
+                        class="viewer-hint">
+
                     <div class="viewer-hint-glow"></div>
+
                     <span class="viewer-hint-text"></span>
+
                 </div>
-                <p id="object-description" class="object-info" hidden></p>
+
+                <p id="exhibition-object-description"
+                   class="object-info"
+                   hidden>
+                </p>
 
             </div>
 
             <div class="object-navigation viewer-actions">
-                <span id="object-counter"></span>
 
-                <button id="previous-button" type="button">
-                    ← Zurück
-                </button>
+                <span id="exhibition-object-counter"></span>
 
-                <button id="open-ar-button" type="button">
-                    In AR ansehen
-                </button>
+                <button id="exhibition-previous-button" type="button"></button>
 
-                <button id="next-button" type="button">
-                    Weiter →
-                </button>
+                <button id="exhibition-open-ar-button" type="button"></button>
+
+                <button id="exhibition-next-button" type="button"></button>
+
             </div>
 
         </article>
 
     </section>
+
+    <!-- Explore page -->
     <section id="explore-page" hidden>
 
         <div class="page-intro">
-            <span class="eyebrow">DIGITALE SAMMLUNG</span>
+            <span id="explore-eyebrow" class="eyebrow"></span>
 
-            <h2>Weitere Objekte entdecken.</h2>
+            <h2 id="explore-title"></h2>
 
-            <p>
-                Durchsuche das digitale Fasnachtsarchiv.
-            </p>
+            <p id="explore-description"></p>
+
         </div>
 
+        <!-- Search interface -->
         <div class="search-bar">
+
             <input
-                    id="search-input"
+                    id="explore-search-input"
                     type="search"
-                    placeholder="Wonach suchst du?"
-                    aria-label="Suchbegriff"
+                    aria-label="Search term"
             >
 
-            <button id="search-button" type="button">
-                Suchen
-            </button>
+            <button id="explore-search-button" type="button"></button>
+
         </div>
+        <!-- Search results viewer -->
         <article id="explore-results" class="exhibit-card search-results" hidden>
 
 
             <span id="explore-object-counter"> </span>
 
             <div class="viewer-container">
-                <div id="explore-viewer"></div>
+                <div id="explore-media-container"></div>
             </div>
 
             <div class="object-navigation">
-                <button id="previous-button-explore" type="button">
-                    ← Zurück
-                </button>
-                <button id="open-ar-button-explore" type="button">
-                    In AR ansehen
+
+                <button
+                        id="explore-previous-button"
+                        type="button">
                 </button>
 
-                <button id="next-button-explore" type="button">
-                    Weiter →
+                <button
+                        id="open-ar-button-explore"
+                        type="button">
                 </button>
+
+                <button id="next-button-explore"
+                        type="button">
+                </button>
+
             </div>
 
         </article>
 
     </section>
 </main>
+
+<!-- AR components -->
 <model-viewer
-        id="ar-model"
+        id="exhibition-ar-model"
         class="ar-model"
         ar
         ar-modes="scene-viewer quick-look "
-        alt="3D-Modell in Augmented Reality">
+        alt="3D model in augmented reality">
 </model-viewer>
 
 <model-viewer
@@ -223,11 +263,12 @@
         class="ar-model"
         ar
         ar-modes="scene-viewer quick-look "
-        alt="3D-Modell aus der Sammlung in Augmented Reality">
+        alt="3D model from the collection in augmented reality">
 </model-viewer>
 
+<!-- Scripts -->
 <script src="/ogv/ogv.js"></script>
-
 <script type="module" src="./src/main.js"></script>
+
 </body>
 </html>

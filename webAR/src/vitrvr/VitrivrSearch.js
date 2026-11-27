@@ -1,5 +1,5 @@
 import {executeQuery} from "./VitrivrService";
-import {setUpExplore} from "../ui/Explore";
+import {setUpExplore} from "../ui/stations/Explore";
 
 export function setUpSearch(exploreViewer,languageSelect) {
     const searchButton = document.getElementById('search-button');

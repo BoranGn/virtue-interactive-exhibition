@@ -1,8 +1,8 @@
-import {FasnachtCharacterQuiz} from "./ui/FasnachtCharacterQuiz.js";
-import {MusicStation} from "./ui/MusicStation.js";
+import {FasnachtCharacterQuiz} from "./ui/stations/FasnachtCharacterQuiz.js";
+import {MusicStation} from "./ui/stations/MusicStation.js";
 import {MediaViewer} from "./viewers/MediaViewer";
 import {setUpSearch} from "./vitrvr/VitrivrSearch";
-import {ARViewer} from "./viewers/ARViewers/ARViewer";
+import {ARViewer} from "./viewers/ar-viewers/ARViewer";
 
 
 import '@google/model-viewer';
