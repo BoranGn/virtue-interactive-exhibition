@@ -1,17 +1,6 @@
 import {executeQuery} from "./VitrivrService";
-import {setUpExplore} from "../ui/stations/Explore";
 
-export function setUpSearch(exploreViewer,languageSelect) {
-    const searchButton = document.getElementById('search-button');
-    const searchInput = document.getElementById('search-input');
-
-    searchButton.addEventListener('click', async () => {
-        const searchText = searchInput.value.trim();
-
-        if(!searchText){
-            return;
-        }
-        try {
+export async function searchMedia(searchText) {
             const query = createQuery(searchText);
             const response = await executeQuery(query);
 
@@ -24,6 +13,7 @@ export function setUpSearch(exploreViewer,languageSelect) {
 
                 if (type === "SEGMENT") {
                     const parent = result.relationship?.partOf;
+
                     if (!parent) {
                         continue;
                     }
@@ -38,7 +28,9 @@ export function setUpSearch(exploreViewer,languageSelect) {
                 if (!relativePath) {
                     continue;
                 }
+
                 const url = "/media/" + relativePath;
+
                 if (seenUrls.has(url)) {
                     continue;
                 }
@@ -52,15 +44,7 @@ export function setUpSearch(exploreViewer,languageSelect) {
                     break;
                 }
             }
-            console.log("Search results:", media);
-            setUpExplore(exploreViewer,languageSelect, media);
-
-
-        } catch (error) {
-            console.error("Search failed:", error);
-        }
-
-    });
+            return media;
 }
 
 function createQuery(text) {

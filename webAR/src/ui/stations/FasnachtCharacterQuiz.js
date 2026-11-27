@@ -57,16 +57,16 @@ export class FasnachtCharacterQuiz {
         this.quizPreviousButton = document.getElementById("quiz-previous-button");
 
         this.viewerSection = document.getElementById("exhibition-viewer");
-        this.viewerContainer = document.getElementById("viewer");
-        this.objectTitle = document.getElementById("object-title");
-        this.objectCounter = document.getElementById("object-counter");
-        this.objectDescription = document.getElementById("object-description");
+        this.viewerContainer = document.getElementById("exhibition-media-container");
+        this.objectTitle = document.getElementById("exhibition-object-title");
+        this.objectCounter = document.getElementById("exhibition-object-counter");
+        this.objectDescription = document.getElementById("exhibition-object-description");
 
-        this.previousButton = document.getElementById("previous-button");
-        this.nextButton = document.getElementById("next-button");
-        this.arButton = document.getElementById("open-ar-button");
+        this.previousButton = document.getElementById("exhibition-previous-button");
+        this.nextButton = document.getElementById("exhibition-next-button");
+        this.arButton = document.getElementById("exhibition-open-ar-button");
 
-        this.viewerHint = document.getElementById("viewer-hint");
+        this.viewerHint = document.getElementById("exhibition-viewer-hint");
         this.viewerHintText = document.querySelector(".viewer-hint-text");
 
         this.currentIndex = 0;

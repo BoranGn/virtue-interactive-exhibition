@@ -1,4 +1,4 @@
-const fasnachtCharacters = [
+export const fasnachtCharacters = [
     {
         id: "waggis",
         name: "Waggis",

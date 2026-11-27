@@ -1,17 +1,17 @@
+import {MediaViewer} from "./viewers/MediaViewer";
+import {ARViewer} from "./viewers/ar-viewers/ARViewer";
+
+import {WelcomePage} from "./ui/WelcomePage";
 import {FasnachtCharacterQuiz} from "./ui/stations/FasnachtCharacterQuiz.js";
 import {MusicStation} from "./ui/stations/MusicStation.js";
-import {MediaViewer} from "./viewers/MediaViewer";
-import {setUpSearch} from "./vitrvr/VitrivrSearch";
-import {ARViewer} from "./viewers/ar-viewers/ARViewer";
+import {Explore} from "./ui/stations/Explore";
 
 
 import '@google/model-viewer';
-
 import * as THREE from "three";
 
 THREE.Cache.enabled = true;
 
-const languageSelect = document.getElementById("language-select");
 
 const welcomePage = document.getElementById("welcome-page");
 const exhibitionPage = document.getElementById("exhibition-page");
@@ -21,37 +21,21 @@ const explorePage = document.getElementById("explore-page");
 const params = new URLSearchParams(window.location.search);
 const station = params.get("station");
 
-console.log("Hello");
-
-console.log("Secure Context:", window.isSecureContext);
-
-if (navigator.xr) {
-    navigator.xr.isSessionSupported("immersive-ar")
-        .then(supported => {
-            console.log("WebXR AR supported:", supported);
-        })
-        .catch(error => {
-            console.error("WebXR error:", error);
-        });
-} else {
-    console.log("WebXR is not available");
-}
-
 welcomePage.hidden = true;
 exhibitionPage.hidden = true;
 explorePage.hidden = true;
 
 switch (station) {
-    case "larven": {
+    case "masks": {
         exhibitionPage.hidden = false;
 
         const exhibitionARViewer = new ARViewer(
-            "ar-model",
-            "open-ar-button"
+            "exhibition-ar-model",
+            "exhibition-open-ar-button"
         );
 
         const exhibitionViewer = new MediaViewer(
-            document.getElementById("viewer"),
+            document.getElementById("exhibition-media-container"),
             exhibitionARViewer
         );
 
@@ -59,36 +43,36 @@ switch (station) {
         break;
     }
 
-    case "archiv": {
+    case "archive": {
         explorePage.hidden = false;
 
         const exploreARViewer = new ARViewer(
-            "ar-model-explore",
-            "open-ar-button-explore"
+            "explore-ar-model",
+            "explore-open-ar-button"
         );
 
         const exploreViewer = new MediaViewer(
-            document.getElementById("explore-viewer"),
+            document.getElementById("explore-media-container"),
             exploreARViewer
         );
 
-        setUpSearch(exploreViewer, languageSelect);
+        new Explore(exploreViewer);
         break;
     }
 
-    case "musik": {
+    case "music": {
         exhibitionPage.hidden = false;
 
-        document.getElementById("larven-quiz").hidden = true;
+        document.getElementById("mask-quiz").hidden = true;
         document.getElementById("music-station").hidden = false;
 
         const exhibitionARViewer = new ARViewer(
-            "ar-model",
-            "open-ar-button"
+            "exhibition-ar-model",
+            "exhibition-open-ar-button"
         );
 
         const exhibitionViewer = new MediaViewer(
-            document.getElementById("viewer"),
+            document.getElementById("exhibition-media-container"),
             exhibitionARViewer
         );
 
@@ -98,6 +82,9 @@ switch (station) {
 
     default: {
         welcomePage.hidden = false;
+
+        new WelcomePage();
+
         break;
     }
 }
